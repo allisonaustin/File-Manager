@@ -40,13 +40,31 @@ class App extends JFrame{
         windowMenu = new JMenu("Window");
         helpMenu = new JMenu("Help");
 
+        JMenuItem rename = new JMenuItem("Rename");
+        JMenuItem copy = new JMenuItem("Copy");
+        JMenuItem delete = new JMenuItem("Delete");
+        JMenuItem run = new JMenuItem("Run");
         JMenuItem exit = new JMenuItem("Exit");
+        JMenuItem expand_branch = new JMenuItem("Expand Branch");
+        JMenuItem collapse_branch = new JMenuItem("Collapse Branch");
+        JMenuItem nw = new JMenuItem("New");
+        JMenuItem cascade = new JMenuItem("Cascade");
+        JMenuItem help = new JMenuItem("Help");
         JMenuItem about = new JMenuItem("About");
 
         exit.addActionListener(new FileActionListener());
         about.addActionListener(new HelpActionListener());
 
+        fileMenu.add(rename);
+        fileMenu.add(copy);
+        fileMenu.add(delete);
+        fileMenu.add(run);
         fileMenu.add(exit);
+        treeMenu.add(expand_branch);
+        treeMenu.add(collapse_branch);
+        windowMenu.add(nw);
+        windowMenu.add(cascade);
+        helpMenu.add(help);
         helpMenu.add(about);
 
 
@@ -61,7 +79,9 @@ class App extends JFrame{
 
         @Override
         public void actionPerformed(ActionEvent e){
-            System.exit(0);
+            if(e.getActionCommand().equals("Exit")){
+                System.exit(0);
+            }
         }
     }
 
@@ -69,8 +89,10 @@ class App extends JFrame{
 
         @Override
         public void actionPerformed(ActionEvent e){
-            AboutDialog dlg = new AboutDialog();
-            dlg.setVisible(true);
+            if(e.getActionCommand().equals("About")){
+                AboutDialog dlg = new AboutDialog();
+                dlg.setVisible(true);
+            }
         }
     }
 
