@@ -9,7 +9,7 @@ class App extends JFrame{
     JToolBar toolBar, statusBar;
     JButton details, simple;
     JDesktopPane desktop;
-    //FileManagerFrame myFrame, my2ndFrame;
+    //Frame myFrame, my2ndFrame;
 
     public App(){
         topPanel = new JPanel();
@@ -22,22 +22,56 @@ class App extends JFrame{
         simple = new JButton("Simple");
         this.setSize(700, 600);
         this.setLocationRelativeTo(null);
+        this.setTitle("CECS 277 File Manager");
+        panel.setLayout(new BorderLayout());
     }
 
     public void go(){
-        this.setTitle("CECS 277 File Manager");
-        panel.setLayout(new BorderLayout());
-        topPanel.setLayout(new BorderLayout());
-        topPanel.add(menuBar, BorderLayout.NORTH);
-        panel.add(topPanel, BorderLayout.NORTH);
-
+        buildMenu();
         this.add(panel);
         this.setVisible(true);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
     private void buildMenu(){
+        JMenu fileMenu, treeMenu, windowMenu, helpMenu;
+        fileMenu = new JMenu("File");
+        treeMenu = new JMenu("Tree");
+        windowMenu = new JMenu("Window");
+        helpMenu = new JMenu("Help");
 
+        JMenuItem exit = new JMenuItem("Exit");
+        JMenuItem about = new JMenuItem("About");
+
+        exit.addActionListener(new FileActionListener());
+        about.addActionListener(new HelpActionListener());
+
+        fileMenu.add(exit);
+        helpMenu.add(about);
+
+
+        menuBar.add(fileMenu);
+        menuBar.add(treeMenu);
+        menuBar.add(windowMenu);
+        menuBar.add(helpMenu);
+        panel.add(menuBar, BorderLayout.NORTH);
+    }
+
+    private static class FileActionListener implements ActionListener{
+
+        @Override
+        public void actionPerformed(ActionEvent e){
+            System.exit(0);
+        }
+    }
+
+    private static class HelpActionListener implements ActionListener{
+
+        @Override
+        public void actionPerformed(ActionEvent e){
+            AboutDialog dlg = new AboutDialog();
+            dlg.setVisible(true);
+        }
     }
 
 }
