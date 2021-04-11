@@ -13,9 +13,9 @@ import javax.swing.event.AncestorListener;
 import javax.swing.event.InternalFrameEvent;
 import javax.swing.event.InternalFrameListener;
 
-public class Frame extends javax.swing.JInternalFrame {
+public class FileManagerFrame extends javax.swing.JInternalFrame {
 
-    public Frame(){
+    public FileManagerFrame(JFrame frame){
 
     }
 }

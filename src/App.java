@@ -1,6 +1,9 @@
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.*;
 
 class App extends JFrame{
@@ -9,9 +12,9 @@ class App extends JFrame{
     JToolBar toolBar, statusBar;
     JButton details, simple;
     JDesktopPane desktop;
-    //Frame myFrame, my2ndFrame;
+    FileManagerFrame frame1, frame2;
 
-    public App(){
+    public App() {
         topPanel = new JPanel();
         panel = new JPanel();
         menuBar = new JMenuBar();
@@ -20,16 +23,32 @@ class App extends JFrame{
         desktop = new JDesktopPane();
         details = new JButton("Details");
         simple = new JButton("Simple");
-        this.setSize(700, 600);
-        this.setLocationRelativeTo(null);
-        this.setTitle("CECS 277 File Manager");
-        panel.setLayout(new BorderLayout());
-        toolBar.setLayout(new BorderLayout());
+        frame1 = new FileManagerFrame(this);
+        frame1.setSize(700, 500);
     }
 
     public void go(){
+        this.setTitle("CECS 277 File Manager");
+        this.setSize(900, 700);
+        this.setLocationRelativeTo(null);
+        panel.setLayout(new BorderLayout());
+        topPanel.setLayout(new BorderLayout());
+
         buildMenu();
+        topPanel.add(menuBar, BorderLayout.NORTH);
+        panel.add(topPanel, BorderLayout.NORTH);
         this.add(panel);
+        frame1.setVisible(true);
+
+        desktop.add(frame1);
+        panel.add(desktop, BorderLayout.CENTER);
+
+        buildToolbar();
+        topPanel.add(toolBar, BorderLayout.SOUTH);
+
+        buildStatusBar();
+        panel.add(statusBar, BorderLayout.SOUTH);
+
         this.setVisible(true);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
@@ -74,7 +93,15 @@ class App extends JFrame{
         menuBar.add(treeMenu);
         menuBar.add(windowMenu);
         menuBar.add(helpMenu);
-        panel.add(menuBar, BorderLayout.NORTH);
+    }
+
+    private void buildToolbar(){
+        toolBar.add(details);
+        toolBar.add(simple);
+    }
+
+    private void buildStatusBar(){
+
     }
 
     private static class FileActionListener implements ActionListener{
