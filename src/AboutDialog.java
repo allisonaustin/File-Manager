@@ -5,7 +5,8 @@ public class AboutDialog extends JDialog {
     private JPanel contentPane;
     private JButton buttonOK;
 
-    public AboutDialog() {
+    public AboutDialog(java.awt.Frame parent, boolean model) {
+        super(parent, model);
         setContentPane(contentPane);
         this.setSize(300, 300);
         setModal(true);
@@ -24,7 +25,7 @@ public class AboutDialog extends JDialog {
     }
 
     public static void main(String[] args) {
-        AboutDialog dialog = new AboutDialog();
+        AboutDialog dialog = new AboutDialog(null, true);
         dialog.pack();
         dialog.setVisible(true);
         System.exit(0);

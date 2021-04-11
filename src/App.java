@@ -24,6 +24,7 @@ class App extends JFrame{
         this.setLocationRelativeTo(null);
         this.setTitle("CECS 277 File Manager");
         panel.setLayout(new BorderLayout());
+        toolBar.setLayout(new BorderLayout());
     }
 
     public void go(){
@@ -52,6 +53,7 @@ class App extends JFrame{
         JMenuItem help = new JMenuItem("Help");
         JMenuItem about = new JMenuItem("About");
 
+        rename.addActionListener(new FileActionListener());
         exit.addActionListener(new FileActionListener());
         about.addActionListener(new HelpActionListener());
 
@@ -76,24 +78,24 @@ class App extends JFrame{
     }
 
     private static class FileActionListener implements ActionListener{
-
         @Override
         public void actionPerformed(ActionEvent e){
             if(e.getActionCommand().equals("Exit")){
                 System.exit(0);
+            } else if(e.getActionCommand().equals("Rename")){
+                RenameFileDialog rename_dlg = new RenameFileDialog(null,true);
+                rename_dlg.setVisible(true);
             }
         }
     }
 
     private static class HelpActionListener implements ActionListener{
-
         @Override
         public void actionPerformed(ActionEvent e){
             if(e.getActionCommand().equals("About")){
-                AboutDialog dlg = new AboutDialog();
+                AboutDialog dlg = new AboutDialog(null, true);
                 dlg.setVisible(true);
             }
         }
     }
-
 }
