@@ -27,6 +27,7 @@ class App extends JFrame{
         frame1.setSize(700, 500);
     }
 
+    // Our "main" method
     public void go(){
         this.setTitle("CECS 277 File Manager");
         this.setSize(900, 700);
@@ -49,10 +50,13 @@ class App extends JFrame{
         buildStatusBar();
         panel.add(statusBar, BorderLayout.SOUTH);
 
-        this.setVisible(true);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setVisible(true);
     }
 
+    /** Creates a menu bar for the topPanel of the GUI
+     *
+     */
     private void buildMenu(){
         JMenu fileMenu, treeMenu, windowMenu, helpMenu;
         fileMenu = new JMenu("File");
@@ -72,10 +76,12 @@ class App extends JFrame{
         JMenuItem help = new JMenuItem("Help");
         JMenuItem about = new JMenuItem("About");
 
+        // Creating actions for our menu items
         rename.addActionListener(new FileActionListener());
         exit.addActionListener(new FileActionListener());
         about.addActionListener(new HelpActionListener());
 
+        // Adding menu items to our menus
         fileMenu.add(rename);
         fileMenu.add(copy);
         fileMenu.add(delete);
@@ -88,23 +94,33 @@ class App extends JFrame{
         helpMenu.add(help);
         helpMenu.add(about);
 
-
+        // Adding menus to our menu bar
         menuBar.add(fileMenu);
         menuBar.add(treeMenu);
         menuBar.add(windowMenu);
         menuBar.add(helpMenu);
     }
 
+    /**
+     *
+     */
     private void buildToolbar(){
         toolBar.add(details);
         toolBar.add(simple);
     }
 
+    /**
+     *
+     */
     private void buildStatusBar(){
 
     }
 
+    // Constructing new classes that implement ActionListener to give actions to our menu items.
     private static class FileActionListener implements ActionListener{
+        /** Creates actions for our menu items in our File menu.
+         * @param e is the action event
+         */
         @Override
         public void actionPerformed(ActionEvent e){
             if(e.getActionCommand().equals("Exit")){
@@ -117,6 +133,9 @@ class App extends JFrame{
     }
 
     private static class HelpActionListener implements ActionListener{
+        /** Creates actions for our menu items in our Help menu.
+         * @param e is the action event
+         */
         @Override
         public void actionPerformed(ActionEvent e){
             if(e.getActionCommand().equals("About")){
