@@ -12,7 +12,7 @@ class App extends JFrame{
     JToolBar toolBar, statusBar;
     JButton details, simple;
     JDesktopPane desktop;
-    FileManagerFrame frame1, frame2;
+    FileManagerFrame frame1;
 
     public App() {
         topPanel = new JPanel();
@@ -37,9 +37,6 @@ class App extends JFrame{
 
         buildMenu();
         topPanel.add(menuBar, BorderLayout.NORTH);
-        panel.add(topPanel, BorderLayout.NORTH);
-        this.add(panel);
-        frame1.setVisible(true);
 
         desktop.add(frame1);
         panel.add(desktop, BorderLayout.CENTER);
@@ -49,13 +46,16 @@ class App extends JFrame{
 
         buildStatusBar();
         panel.add(statusBar, BorderLayout.SOUTH);
+        panel.add(topPanel, BorderLayout.NORTH);
 
+        this.add(panel);
+        frame1.setVisible(true);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setVisible(true);
     }
 
     /** Creates a menu bar for the topPanel of the GUI
-     *
+     * Components: File, Tree, Window, Help
      */
     private void buildMenu(){
         JMenu fileMenu, treeMenu, windowMenu, helpMenu;
@@ -101,19 +101,28 @@ class App extends JFrame{
         menuBar.add(helpMenu);
     }
 
-    /**
-     *
+    /** Creates a toolbar below the menu bar.
+     * Components: current drive, details, simple
      */
     private void buildToolbar(){
-        toolBar.add(details);
-        toolBar.add(simple);
+        JPanel p = new JPanel();
+        p.add(details);
+        p.add(simple);
+        toolBar.add(p);
     }
 
-    /**
-     *
+    /** Creates a status bar at the bottom of the external frame. Gives information on system specifications.
+     * Components: Drive, free space, used space, total space
      */
     private void buildStatusBar(){
-
+        JLabel currentDrive = new JLabel("Current Drive:    ");
+        JLabel freeSpc = new JLabel("Free Space:    ");
+        JLabel usedSpc = new JLabel("Used Space:    ");
+        JLabel totalSpc = new JLabel("Total Space:  ");
+        statusBar.add(currentDrive);
+        statusBar.add(freeSpc);
+        statusBar.add(usedSpc);
+        statusBar.add(totalSpc);
     }
 
     // Constructing new classes that implement ActionListener to give actions to our menu items.
@@ -141,6 +150,8 @@ class App extends JFrame{
             if(e.getActionCommand().equals("About")){
                 AboutDialog dlg = new AboutDialog(null, true);
                 dlg.setVisible(true);
+            } else if(e.getActionCommand().equals("Help")){
+
             }
         }
     }
