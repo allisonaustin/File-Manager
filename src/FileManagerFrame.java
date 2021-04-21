@@ -11,9 +11,12 @@ import javax.swing.event.InternalFrameListener;
 
 public class FileManagerFrame extends JInternalFrame {
     JSplitPane splitPane;
+    DirPanel dirPanel = new DirPanel();
+    FilePanel filePanel = new FilePanel();
     public FileManagerFrame(JFrame frame){
-        splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, new DirPanel(), new FilePanel());
-        splitPane.setDividerLocation(250);
+        splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT);
+        splitPane.setLeftComponent(dirPanel);
+        splitPane.setRightComponent(filePanel);
         this.setTitle("C:");
         this.getContentPane().add(splitPane);
         this.setClosable(true);

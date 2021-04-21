@@ -54,7 +54,8 @@ class App extends JFrame{
         this.setVisible(true);
     }
 
-    /** Creates a menu bar for the topPanel of the GUI
+    /**
+     * Creates a menu bar for the topPanel of the GUI
      * Components: File, Tree, Window, Help
      */
     private void buildMenu(){
@@ -101,7 +102,8 @@ class App extends JFrame{
         menuBar.add(helpMenu);
     }
 
-    /** Creates a toolbar below the menu bar.
+    /**
+     * Creates a toolbar below the menu bar.
      * Components: current drive, details, simple
      */
     private void buildToolbar(){
@@ -111,7 +113,8 @@ class App extends JFrame{
         toolBar.add(p);
     }
 
-    /** Creates a status bar at the bottom of the external frame. Gives information on system specifications.
+    /**
+     * Creates a status bar at the bottom of the external frame. Gives information on system specifications.
      * Components: Drive, free space, used space, total space
      */
     private void buildStatusBar(){
@@ -127,7 +130,8 @@ class App extends JFrame{
 
     // Constructing new classes that implement ActionListener to give actions to our menu items.
     private static class FileActionListener implements ActionListener{
-        /** Creates actions for our menu items in our File menu.
+        /**
+         * Creates actions for our menu items in our File menu.
          * @param e is the action event
          */
         @Override
@@ -142,7 +146,8 @@ class App extends JFrame{
     }
 
     private static class HelpActionListener implements ActionListener{
-        /** Creates actions for our menu items in our Help menu.
+        /**
+         * Creates actions for our menu items in our Help menu.
          * @param e is the action event
          */
         @Override
