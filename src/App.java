@@ -1,10 +1,9 @@
-import java.awt.BorderLayout;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.*;
+import javax.swing.filechooser.FileSystemView;
 
 class App extends JFrame{
     JPanel panel, topPanel;
@@ -80,6 +79,7 @@ class App extends JFrame{
         // Creating actions for our menu items
         rename.addActionListener(new FileActionListener());
         exit.addActionListener(new FileActionListener());
+        nw.addActionListener(new WindowActionListener());
         about.addActionListener(new HelpActionListener());
 
         // Adding menu items to our menus
@@ -108,9 +108,54 @@ class App extends JFrame{
      */
     private void buildToolbar(){
         JPanel p = new JPanel();
+        JComboBox comboBox = new JComboBox();
+        FileSystemView fsv = FileSystemView.getFileSystemView();
+        File[] drives = getDrives();
+        for(File drive : drives){
+            comboBox.addItem(drive + " " + fsv.getSystemDisplayName(drive));
+        }
+        p.add(comboBox);
         p.add(details);
         p.add(simple);
         toolBar.add(p);
+    }
+
+    /**
+     * Gets a list of drives on the computer.
+     * @return list of files representing the drives
+     */
+    public static File[] getDrives(){
+        File[] paths = File.listRoots();
+        return paths;
+    }
+
+    /**
+     * Converts information returned from drive information (bytes) into a string that better describes the size of the space.
+     * @param bytes
+     * @return
+     */
+    private String bytesToReadableInfo(long bytes){
+        long kilobyte = 1024;
+        long megabyte = kilobyte * 1024;
+        long gigabyte = megabyte * 1024;
+        long terabyte = gigabyte * 1024;
+        if((bytes >= 0) && (bytes < kilobyte)){
+            return bytes + " B";
+        }
+        if((bytes >= kilobyte) && (bytes < megabyte)){
+            return (bytes/kilobyte) + " KB";
+        }
+        if((bytes >= megabyte) && (bytes < gigabyte)){
+            return (bytes/megabyte) + " MB";
+        }
+        if((bytes >= gigabyte) && (bytes < terabyte)){
+            return (bytes/gigabyte) + " GB";
+        }
+        if(bytes >= terabyte){
+            return (bytes/terabyte) + " TB";
+        } else{
+            return bytes + " Bytes";
+        }
     }
 
     /**
@@ -118,10 +163,15 @@ class App extends JFrame{
      * Components: Drive, free space, used space, total space
      */
     private void buildStatusBar(){
-        JLabel currentDrive = new JLabel("Current Drive:    ");
-        JLabel freeSpc = new JLabel("Free Space:    ");
-        JLabel usedSpc = new JLabel("Used Space:    ");
-        JLabel totalSpc = new JLabel("Total Space:  ");
+        FileSystemView fsv = FileSystemView.getFileSystemView();
+        File[] drives = getDrives();
+        JLabel currentDrive = new JLabel("Current Drive: "+ drives[0]+ "    ");
+        String freeSpace = bytesToReadableInfo(drives[0].getFreeSpace());
+        String usedSpace = bytesToReadableInfo(drives[0].getTotalSpace() - drives[0].getFreeSpace());
+        String totalSpace = bytesToReadableInfo(drives[0].getTotalSpace());
+        JLabel freeSpc = new JLabel("Free Space: "+freeSpace + "    ");
+        JLabel usedSpc = new JLabel("Used Space: "+usedSpace + "    ");
+        JLabel totalSpc = new JLabel("Total Space: "+totalSpace + "    ");
         statusBar.add(currentDrive);
         statusBar.add(freeSpc);
         statusBar.add(usedSpc);
@@ -145,6 +195,37 @@ class App extends JFrame{
         }
     }
 
+    private static class TreeActionListener implements ActionListener{
+        /**
+         * Creates actions for our menu items in our Tree menu.
+         * @param e is the action event
+         */
+        @Override
+        public void actionPerformed(ActionEvent e){
+            if(e.getActionCommand().equals("Expand Branch")){
+                System.exit(0);
+            } else if(e.getActionCommand().equals("Collapse Branch")){
+                System.exit(0);
+            }
+        }
+    }
+
+    private static class WindowActionListener implements ActionListener{
+        /**
+         * Creates actions for our menu items in our Window menu.
+         * @param e is the action event
+         */
+        @Override
+        public void actionPerformed(ActionEvent e){
+            if(e.getActionCommand().equals("New")){
+                System.exit(0);
+            } else if(e.getActionCommand().equals("Cascade")){
+                System.exit(0);
+            }
+        }
+    }
+
+
     private static class HelpActionListener implements ActionListener{
         /**
          * Creates actions for our menu items in our Help menu.
@@ -156,7 +237,7 @@ class App extends JFrame{
                 AboutDialog dlg = new AboutDialog(null, true);
                 dlg.setVisible(true);
             } else if(e.getActionCommand().equals("Help")){
-
+                System.exit(0);
             }
         }
     }
