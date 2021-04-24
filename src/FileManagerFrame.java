@@ -1,5 +1,4 @@
-import java.awt.BorderLayout;
-import java.awt.Dimension;
+import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.WindowEvent;
@@ -11,14 +10,17 @@ import javax.swing.event.InternalFrameListener;
 
 public class FileManagerFrame extends JInternalFrame {
     JSplitPane splitPane;
-    public FileManagerFrame(JFrame frame){
-        splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, new DirPanel(), new FilePanel());
-        splitPane.setDividerLocation(250);
+    DirPanel dirPanel = new DirPanel();
+    FilePanel filePanel = new FilePanel();
+    public FileManagerFrame(JFrame frame) {
+        splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, dirPanel, filePanel);
         this.setTitle("C:");
         this.getContentPane().add(splitPane);
+        this.pack();
         this.setClosable(true);
         this.setMaximizable(true);
         this.setIconifiable(true);
+        frame.add(this);
         this.setVisible(true);
     }
 }
