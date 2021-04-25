@@ -129,34 +129,6 @@ class App extends JFrame{
         return paths;
     }
 
-    /**
-     * Converts information returned from drive information (bytes) into a string that better describes the size of the space.
-     * @param bytes
-     * @return
-     */
-    private String bytesToReadableInfo(long bytes){
-        long kilobyte = 1024;
-        long megabyte = kilobyte * 1024;
-        long gigabyte = megabyte * 1024;
-        long terabyte = gigabyte * 1024;
-        if((bytes >= 0) && (bytes < kilobyte)){
-            return bytes + " B";
-        }
-        if((bytes >= kilobyte) && (bytes < megabyte)){
-            return (bytes/kilobyte) + " KB";
-        }
-        if((bytes >= megabyte) && (bytes < gigabyte)){
-            return (bytes/megabyte) + " MB";
-        }
-        if((bytes >= gigabyte) && (bytes < terabyte)){
-            return (bytes/gigabyte) + " GB";
-        }
-        if(bytes >= terabyte){
-            return (bytes/terabyte) + " TB";
-        } else{
-            return bytes + " Bytes";
-        }
-    }
 
     /**
      * Creates a status bar at the bottom of the external frame. Gives information on system specifications.
@@ -166,9 +138,9 @@ class App extends JFrame{
         FileSystemView fsv = FileSystemView.getFileSystemView();
         File[] drives = getDrives();
         JLabel currentDrive = new JLabel("Current Drive: "+ drives[0]+ "    ");
-        String freeSpace = bytesToReadableInfo(drives[0].getFreeSpace());
-        String usedSpace = bytesToReadableInfo(drives[0].getTotalSpace() - drives[0].getFreeSpace());
-        String totalSpace = bytesToReadableInfo(drives[0].getTotalSpace());
+        String freeSpace = toString(drives[0].getFreeSpace());
+        String usedSpace = toString(drives[0].getTotalSpace() - drives[0].getFreeSpace());
+        String totalSpace = toString(drives[0].getTotalSpace());
         JLabel freeSpc = new JLabel("Free Space: "+freeSpace + "    ");
         JLabel usedSpc = new JLabel("Used Space: "+usedSpace + "    ");
         JLabel totalSpc = new JLabel("Total Space: "+totalSpace + "    ");
@@ -239,6 +211,35 @@ class App extends JFrame{
             } else if(e.getActionCommand().equals("Help")){
                 System.exit(0);
             }
+        }
+    }
+
+    /**
+     * Converts information returned from drive information (bytes) into a string that better describes the size of the space.
+     * @param bytes
+     * @return
+     */
+    private String toString(long bytes){
+        long kilobyte = 1024;
+        long megabyte = kilobyte * 1024;
+        long gigabyte = megabyte * 1024;
+        long terabyte = gigabyte * 1024;
+        if((bytes >= 0) && (bytes < kilobyte)){
+            return bytes + " B";
+        }
+        if((bytes >= kilobyte) && (bytes < megabyte)){
+            return (bytes/kilobyte) + " KB";
+        }
+        if((bytes >= megabyte) && (bytes < gigabyte)){
+            return (bytes/megabyte) + " MB";
+        }
+        if((bytes >= gigabyte) && (bytes < terabyte)){
+            return (bytes/gigabyte) + " GB";
+        }
+        if(bytes >= terabyte){
+            return (bytes/terabyte) + " TB";
+        } else{
+            return bytes + " Bytes";
         }
     }
 }

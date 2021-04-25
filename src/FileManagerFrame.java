@@ -16,7 +16,6 @@ public class FileManagerFrame extends JInternalFrame {
         splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, dirPanel, filePanel);
         this.setTitle("C:");
         this.getContentPane().add(splitPane);
-        this.pack();
         this.setClosable(true);
         this.setMaximizable(true);
         this.setIconifiable(true);
