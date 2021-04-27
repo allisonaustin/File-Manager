@@ -1,7 +1,11 @@
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.io.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.*;
 import javax.swing.filechooser.FileSystemView;
 
@@ -11,7 +15,7 @@ class App extends JFrame{
     JToolBar toolBar, statusBar;
     JButton details, simple;
     JDesktopPane desktop;
-    FileManagerFrame frame1;
+    FileManagerFrame frame1,frame2;
 
     public App() {
         topPanel = new JPanel();
@@ -20,10 +24,10 @@ class App extends JFrame{
         toolBar = new JToolBar();
         statusBar = new JToolBar();
         desktop = new JDesktopPane();
-        details = new JButton("Details");
-        simple = new JButton("Simple");
         frame1 = new FileManagerFrame(this);
-        frame1.setSize(700, 500);
+        frame2 = new FileManagerFrame(this);
+        frame1.setSize(600, 500);
+        frame2.setSize(600,500);
     }
 
     // Our "main" method
@@ -73,13 +77,17 @@ class App extends JFrame{
         JMenuItem collapse_branch = new JMenuItem("Collapse Branch");
         JMenuItem nw = new JMenuItem("New");
         JMenuItem cascade = new JMenuItem("Cascade");
-        JMenuItem help = new JMenuItem("Help");
+        JMenuItem help = new JMenuItem("Help ");
         JMenuItem about = new JMenuItem("About");
 
         // Creating actions for our menu items
         rename.addActionListener(new FileActionListener());
         exit.addActionListener(new FileActionListener());
+        expand_branch.addActionListener(new TreeActionListener());
+        collapse_branch.addActionListener(new TreeActionListener());
         nw.addActionListener(new WindowActionListener());
+        cascade.addActionListener(new CascadeActionListener());
+        help.addActionListener(new HelpActionListener());
         about.addActionListener(new HelpActionListener());
 
         // Adding menu items to our menus
@@ -106,18 +114,43 @@ class App extends JFrame{
      * Creates a toolbar below the menu bar.
      * Components: current drive, details, simple
      */
+    JComboBox drives;
     private void buildToolbar(){
-        JPanel p = new JPanel();
-        JComboBox comboBox = new JComboBox();
+        DetailsActionListener detailsActionListener = new DetailsActionListener();
+        details = new JButton("Details");
+        simple = new JButton("Simple");
+        details.addActionListener(detailsActionListener);
+        simple.addActionListener(detailsActionListener);
+        drives = new JComboBox();
+        drives.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                String selectedDrive = drives.getSelectedItem().toString().substring(0, 3);
+                String currDrive = selectedDrive;
+                String newFrameTitle = currDrive.substring(0,2);
+                selectedDrive += "\\";
+                FileManagerFrame active = (FileManagerFrame) desktop.getSelectedFrame();
+                if(active == null){
+                    return;
+                }
+                active.setFrameTitle(newFrameTitle);
+                //updating the tree to display the files of the new drive
+                active.dirPanel.setRootFile(selectedDrive);
+                active.dirPanel.setTree();
+                updateStatusBar(currDrive);
+            }
+        });
         FileSystemView fsv = FileSystemView.getFileSystemView();
-        File[] drives = getDrives();
-        for(File drive : drives){
-            comboBox.addItem(drive + " " + fsv.getSystemDisplayName(drive));
+        File[] paths = getDrives();
+        for(File drive : paths){
+            drives.addItem(drive + " " + fsv.getSystemDisplayName(drive));
         }
-        p.add(comboBox);
-        p.add(details);
-        p.add(simple);
-        toolBar.add(p);
+        JPanel toolPanel = new JPanel();
+        toolPanel.setLayout(new FlowLayout());
+        toolPanel.add(drives);
+        toolPanel.add(details);
+        toolPanel.add(simple);
+        toolBar.add(toolPanel);
+        toolBar.setFloatable(false);
     }
 
     /**
@@ -129,25 +162,39 @@ class App extends JFrame{
         return paths;
     }
 
-
     /**
      * Creates a status bar at the bottom of the external frame. Gives information on system specifications.
      * Components: Drive, free space, used space, total space
      */
+    static JLabel currentDrive, freeSpc, usedSpc, totalSpc;
     private void buildStatusBar(){
-        FileSystemView fsv = FileSystemView.getFileSystemView();
-        File[] drives = getDrives();
-        JLabel currentDrive = new JLabel("Current Drive: "+ drives[0]+ "    ");
-        String freeSpace = toString(drives[0].getFreeSpace());
-        String usedSpace = toString(drives[0].getTotalSpace() - drives[0].getFreeSpace());
-        String totalSpace = toString(drives[0].getTotalSpace());
-        JLabel freeSpc = new JLabel("Free Space: "+freeSpace + "    ");
-        JLabel usedSpc = new JLabel("Used Space: "+usedSpace + "    ");
-        JLabel totalSpc = new JLabel("Total Space: "+totalSpace + "    ");
+        File drive = getDrives()[0];
+        currentDrive = new JLabel("Current Drive: " + drive + "    ");
+        String freeSpace = toString(drive.getFreeSpace());
+        String usedSpace = toString(drive.getTotalSpace() - drive.getFreeSpace());
+        String totalSpace = toString(drive.getTotalSpace());
+        freeSpc = new JLabel("Free Space: " + freeSpace + "    ");
+        usedSpc = new JLabel("Used Space: " + usedSpace + "    ");
+        totalSpc = new JLabel("Total Space: " + totalSpace + "    ");
         statusBar.add(currentDrive);
         statusBar.add(freeSpc);
         statusBar.add(usedSpc);
         statusBar.add(totalSpc);
+    }
+
+    /**
+     * Updates the text fields of the statusBar's labels when a new drive is selected
+     * @param currDrive
+     */
+    public static void updateStatusBar(String currDrive){
+        File newDrive = new File(currDrive);
+        String freeSpace = toString(newDrive.getFreeSpace());
+        String usedSpace = toString(newDrive.getTotalSpace() - newDrive.getFreeSpace());
+        String totalSpace = toString(newDrive.getTotalSpace());
+        currentDrive.setText("Current Drive: " + newDrive + "    ");
+        freeSpc.setText("Free Space: " + freeSpace + "    ");
+        usedSpc.setText("Used Space: " + usedSpace + "    ");
+        totalSpc.setText("Total Space: " + totalSpace + "    ");
     }
 
     // Constructing new classes that implement ActionListener to give actions to our menu items.
@@ -182,7 +229,7 @@ class App extends JFrame{
         }
     }
 
-    private static class WindowActionListener implements ActionListener{
+    private class WindowActionListener implements ActionListener{
         /**
          * Creates actions for our menu items in our Window menu.
          * @param e is the action event
@@ -190,7 +237,9 @@ class App extends JFrame{
         @Override
         public void actionPerformed(ActionEvent e){
             if(e.getActionCommand().equals("New")){
-                System.exit(0);
+                desktop.add(frame2);
+                frame2.setVisible(true);
+
             } else if(e.getActionCommand().equals("Cascade")){
                 System.exit(0);
             }
@@ -198,7 +247,7 @@ class App extends JFrame{
     }
 
 
-    private static class HelpActionListener implements ActionListener{
+    private class HelpActionListener implements ActionListener{
         /**
          * Creates actions for our menu items in our Help menu.
          * @param e is the action event
@@ -208,8 +257,35 @@ class App extends JFrame{
             if(e.getActionCommand().equals("About")){
                 AboutDialog dlg = new AboutDialog(null, true);
                 dlg.setVisible(true);
-            } else if(e.getActionCommand().equals("Help")){
+            } else if(e.getActionCommand().equals("Help ")){
                 System.exit(0);
+            }
+        }
+    }
+
+    private class DetailsActionListener implements ActionListener {
+        /**
+         * @param e is the action event
+         */
+        @Override
+        public void actionPerformed(ActionEvent e) {
+
+        }
+    }
+
+    class CascadeActionListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            int x = 0;
+            int y = 0;
+            JInternalFrame[] frames = desktop.getAllFrames();
+            int count = frames.length;
+            x = 30 * (count-1);
+            y = 30 * (count-1);
+            for(JInternalFrame frame : frames){
+                frame.setLocation(x,y);
+                x-=30;
+                y-=30;
             }
         }
     }
@@ -219,7 +295,7 @@ class App extends JFrame{
      * @param bytes
      * @return
      */
-    private String toString(long bytes){
+    private static String toString(long bytes){
         long kilobyte = 1024;
         long megabyte = kilobyte * 1024;
         long gigabyte = megabyte * 1024;

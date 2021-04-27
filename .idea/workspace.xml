@@ -4,8 +4,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="842e4cad-4169-47f4-8647-99813a6dae12" name="Default Changelist" comment="Reorganized directory. Added components to the status bar. Fixed toolbar to properly display drive name.">
+    <list default="true" id="842e4cad-4169-47f4-8647-99813a6dae12" name="Default Changelist" comment="Added comments + javadocs :)">
+      <change afterPath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/App$TreeActionListener.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/App$WindowActionListener.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/DirPanel.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/FileManagerFrame.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/FileNode.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/FilePanel.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/RenameFileDialog$1.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/RenameFileDialog$2.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/RenameFileDialog$3$1.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/RenameFileDialog$3.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/RenameFileDialog.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/App$FileActionListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/App$FileActionListener.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/App$HelpActionListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/App$HelpActionListener.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/App.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/App.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/DirPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DirPanel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/FileManagerFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FileManagerFrame.java" afterDir="false" />
@@ -147,7 +161,14 @@
       <option name="project" value="LOCAL" />
       <updated>1619208559858</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Added a JList to the FilePanel. Filled the entire DirPanel with the JScrollPane.">
+      <created>1619316534565</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1619316534565</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -172,6 +193,7 @@
     <MESSAGE value="Added a split pane with a Directory Panel and a File Panel." />
     <MESSAGE value="Resized ScrollPane for DirPanel to fit on the right side of the SplitPane. Successfully built directory using JTree by reading files on the C drive. Created a TreeSelectionListener for file execution." />
     <MESSAGE value="Reorganized directory. Added components to the status bar. Fixed toolbar to properly display drive name." />
-    <option name="LAST_COMMIT_MESSAGE" value="Reorganized directory. Added components to the status bar. Fixed toolbar to properly display drive name." />
+    <MESSAGE value="Added a JList to the FilePanel. Filled the entire DirPanel with the JScrollPane." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added a JList to the FilePanel. Filled the entire DirPanel with the JScrollPane." />
   </component>
 </project>
