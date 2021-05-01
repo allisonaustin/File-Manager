@@ -23,7 +23,7 @@ class App extends JFrame{
         statusBar = new JToolBar();
         desktop = new JDesktopPane();
         frame1 = new FileManagerFrame(this);
-        frame1.setSize(700, 500);
+        frame1.setSize(750, 500);
     }
 
     // Our "main" method
@@ -238,7 +238,7 @@ class App extends JFrame{
         @Override
         public void actionPerformed(ActionEvent e){
             intframe = new FileManagerFrame(jframe);
-            intframe.setSize(600,500);
+            intframe.setSize(750,500);
             desktop.add(intframe);
             intframe.setVisible(true);
             }

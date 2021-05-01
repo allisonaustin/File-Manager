@@ -4,11 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="842e4cad-4169-47f4-8647-99813a6dae12" name="Default Changelist" comment="Added action listeners to JComboBox, JTree, and Window menu. Status bar and tree now update when a new drive is selected.">
+    <list default="true" id="842e4cad-4169-47f4-8647-99813a6dae12" name="Default Changelist" comment="Added icons to FilePanel. FilePanel updates with JTree selection. Popup menu opens on right click.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/App$FileActionListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/App$FileActionListener.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/App$HelpActionListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/App$HelpActionListener.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/App$TreeActionListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/App$TreeActionListener.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/App$WindowActionListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/App$WindowActionListener.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/App.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/App.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/DirPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/DirPanel.class" afterDir="false" />
@@ -51,7 +48,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="UI_DESIGNER_EDITOR_MODE.PaletteManager.SHOW" value="false" />
-    <property name="UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.SHOW" value="false" />
+    <property name="UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.SHOW" value="true" />
     <property name="UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.WIDTH" value="283" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
@@ -169,7 +166,14 @@
       <option name="project" value="LOCAL" />
       <updated>1619551941148</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Added icons to FilePanel. FilePanel updates with JTree selection. Popup menu opens on right click.">
+      <created>1619837214042</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1619837214042</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -196,6 +200,7 @@
     <MESSAGE value="Reorganized directory. Added components to the status bar. Fixed toolbar to properly display drive name." />
     <MESSAGE value="Added a JList to the FilePanel. Filled the entire DirPanel with the JScrollPane." />
     <MESSAGE value="Added action listeners to JComboBox, JTree, and Window menu. Status bar and tree now update when a new drive is selected." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added action listeners to JComboBox, JTree, and Window menu. Status bar and tree now update when a new drive is selected." />
+    <MESSAGE value="Added icons to FilePanel. FilePanel updates with JTree selection. Popup menu opens on right click." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added icons to FilePanel. FilePanel updates with JTree selection. Popup menu opens on right click." />
   </component>
 </project>

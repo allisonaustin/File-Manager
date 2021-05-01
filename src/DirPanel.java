@@ -13,8 +13,10 @@ public class DirPanel extends JPanel {
     private DefaultTreeModel treeModel;
     private File rootFile;
     private FilePanel filePanel;
+    private FileManagerFrame thisFrame;
 
     public DirPanel(FilePanel fp, FileManagerFrame frame){
+        thisFrame = frame;
         setLayout(new BorderLayout());
         scrollPane = new JScrollPane();
         scrollPane.setMinimumSize(new Dimension(250,500));
@@ -83,13 +85,14 @@ public class DirPanel extends JPanel {
         FileManagerFrame.currentSelected = rootFile.getAbsolutePath();
         createNodes(top);
         dirTree.expandRow(0);
+        //updating file panel
+        filePanel.displayFiles(root.getFile());
 
         dirTree.setSelectionRow(FileManagerFrame.lastSelectedRow);
         dirTree.expandRow(FileManagerFrame.lastSelectedRow);
 
-        //changeFilePanel();
         dirTree.addTreeSelectionListener(new MyTreeSelectionListener());
-        //dirTree.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
+        dirTree.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
         dirTree.setModel(treeModel);
 
         scrollPane.setViewportView(dirTree);
@@ -155,6 +158,7 @@ public class DirPanel extends JPanel {
             DefaultMutableTreeNode category = null;
             FileNode fn = (FileNode) node.getUserObject();
             File file = fn.getFile();
+            thisFrame.setFrameTitle(file.getAbsolutePath());
             File[] files = file.listFiles();
             if(files != null){
                 for(int i=0; i<files.length; i++){

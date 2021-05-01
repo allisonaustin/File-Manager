@@ -13,7 +13,7 @@ public class FileManagerFrame extends JInternalFrame {
     JSplitPane splitPane;
     DirPanel dirPanel;
     FilePanel filePanel;
-    String frameTitle = "C:/";
+    static String frameTitle = "C:/";
     static String currentSelected;
     static int lastSelectedRow;
 
