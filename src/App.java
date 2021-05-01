@@ -1,8 +1,5 @@
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
+import java.awt.event.*;
 import java.io.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -11,11 +8,12 @@ import javax.swing.filechooser.FileSystemView;
 
 class App extends JFrame{
     JPanel panel, topPanel;
+    JFrame jframe = this;
     JMenuBar menuBar;
     JToolBar toolBar, statusBar;
     JButton details, simple;
-    JDesktopPane desktop;
-    FileManagerFrame frame1,frame2;
+    static JDesktopPane desktop;
+    FileManagerFrame frame1, intframe;
 
     public App() {
         topPanel = new JPanel();
@@ -25,9 +23,7 @@ class App extends JFrame{
         statusBar = new JToolBar();
         desktop = new JDesktopPane();
         frame1 = new FileManagerFrame(this);
-        frame2 = new FileManagerFrame(this);
-        frame1.setSize(600, 500);
-        frame2.setSize(600,500);
+        frame1.setSize(700, 500);
     }
 
     // Our "main" method
@@ -126,13 +122,12 @@ class App extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 String selectedDrive = drives.getSelectedItem().toString().substring(0, 3);
                 String currDrive = selectedDrive;
-                String newFrameTitle = currDrive.substring(0,2);
                 selectedDrive += "\\";
                 FileManagerFrame active = (FileManagerFrame) desktop.getSelectedFrame();
                 if(active == null){
                     return;
                 }
-                active.setFrameTitle(newFrameTitle);
+                active.setFrameTitle(currDrive);
                 //updating the tree to display the files of the new drive
                 active.dirPanel.setRootFile(selectedDrive);
                 active.dirPanel.setTree();
@@ -221,30 +216,33 @@ class App extends JFrame{
          */
         @Override
         public void actionPerformed(ActionEvent e){
+            FileManagerFrame active = (FileManagerFrame) desktop.getSelectedFrame();
+            if(active==null){
+                return;
+            }
+            JTree temp = active.dirPanel.getDirTree();
+            int row = temp.getMinSelectionRow();
             if(e.getActionCommand().equals("Expand Branch")){
-                System.exit(0);
+                temp.expandRow(row);
             } else if(e.getActionCommand().equals("Collapse Branch")){
-                System.exit(0);
+                temp.collapseRow(row);
             }
         }
     }
 
     private class WindowActionListener implements ActionListener{
         /**
-         * Creates actions for our menu items in our Window menu.
+         * Creates a new FileManagerFrame intframe and adds it to the desktop.
          * @param e is the action event
          */
         @Override
         public void actionPerformed(ActionEvent e){
-            if(e.getActionCommand().equals("New")){
-                desktop.add(frame2);
-                frame2.setVisible(true);
-
-            } else if(e.getActionCommand().equals("Cascade")){
-                System.exit(0);
+            intframe = new FileManagerFrame(jframe);
+            intframe.setSize(600,500);
+            desktop.add(intframe);
+            intframe.setVisible(true);
             }
         }
-    }
 
 
     private class HelpActionListener implements ActionListener{
@@ -265,11 +263,25 @@ class App extends JFrame{
 
     private class DetailsActionListener implements ActionListener {
         /**
+         * Shows or hides details in the filePanel (the date the file was created and t
          * @param e is the action event
          */
         @Override
         public void actionPerformed(ActionEvent e) {
-
+            FileManagerFrame active = (FileManagerFrame) desktop.getSelectedFrame();
+            if(active==null){
+                return;
+            }
+            if(e.equals("Details")){
+                if(active.filePanel.getShowDetails()==false){
+                    active.filePanel.setShowDetails(true);
+                }
+            }
+            if(e.equals("Simple")){
+                if(active.filePanel.getShowDetails()==true){
+                    active.filePanel.setShowDetails(false);
+                }
+            }
         }
     }
 
@@ -289,6 +301,7 @@ class App extends JFrame{
             }
         }
     }
+
 
     /**
      * Converts information returned from drive information (bytes) into a string that better describes the size of the space.

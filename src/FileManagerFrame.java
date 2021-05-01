@@ -13,7 +13,7 @@ public class FileManagerFrame extends JInternalFrame {
     JSplitPane splitPane;
     DirPanel dirPanel;
     FilePanel filePanel;
-    String frameTitle = "C:";
+    String frameTitle = "C:/";
     static String currentSelected;
     static int lastSelectedRow;
 
@@ -33,13 +33,11 @@ public class FileManagerFrame extends JInternalFrame {
         this.setClosable(true);
         this.setMaximizable(true);
         this.setIconifiable(true);
-        this.moveToFront();
-        this.setVisible(true);
         this.toFront();
-        this.requestFocusInWindow(true);
         this.addInternalFrameListener(new MyFocusListener());
         this.show();
         this.pack();
+        this.requestFocusInWindow();
     }
 
     public void setFrameTitle(String ft){
