@@ -32,8 +32,13 @@ public class FilePanel extends JPanel {
             public Component getListCellRendererComponent(JList list, Object value, int index, boolean selected, boolean cellHasFocus) {
                 super.getListCellRendererComponent(list, value, index, selected, cellHasFocus);
                 if( value instanceof String ){
+                    if( filesInList.get(index).isDirectory() ){
+                        setIcon(UIManager.getIcon("FileChooser.newFolderIcon"));
+                    }
+                    else if( filesInList.get(index).isFile() ){
+                        setIcon(UIManager.getIcon("FileView.fileIcon"));
+                    }
                     String name = (String) value;
-                    setIcon(UIManager.getIcon("FileChooser.newFolderIcon"));
                     setText(name);
                 }
                 return this;
@@ -99,7 +104,7 @@ public class FilePanel extends JPanel {
      */
     public void runFile(File f) {
         Desktop desktop = Desktop.getDesktop();
-        if(f.exists())
+        if(f.exists() && f.isFile())
             try {
                 desktop.open(f);
             } catch (IOException e){
@@ -122,10 +127,7 @@ public class FilePanel extends JPanel {
         SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
         DecimalFormat df = new DecimalFormat("#,###");
         return String.format("%-35s %20s %20s", fileName, sdf.format(f.lastModified()), df.format(f.length()));
-
     }
-
-
 
 
     /**
@@ -214,6 +216,12 @@ public class FilePanel extends JPanel {
 
         @Override
         public void mouseClicked(MouseEvent e) {
+            if(e.getClickCount() == 1){
+                File f = filesInList.get(getSelectedRow());
+                if(f.isDirectory()){
+                    displayFiles(f);
+                }
+            }
             if(e.getClickCount() == 2) {
                 File f = filesInList.get(getSelectedRow());
                 runFile(f);
