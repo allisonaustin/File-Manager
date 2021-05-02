@@ -4,15 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="842e4cad-4169-47f4-8647-99813a6dae12" name="Default Changelist" comment="Added icons to FilePanel. FilePanel updates with JTree selection. Popup menu opens on right click.">
+    <list default="true" id="842e4cad-4169-47f4-8647-99813a6dae12" name="Default Changelist" comment="Added details to the files. FileManagerFrame name updates.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/App$FileActionListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/App$FileActionListener.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/App$HelpActionListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/App$HelpActionListener.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/App$TreeActionListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/App$TreeActionListener.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/App$WindowActionListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/App$WindowActionListener.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/App.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/App.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/DirPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/DirPanel.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/FileManagerFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/FileManagerFrame.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/FilePanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/FilePanel.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DirPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DirPanel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/FileManagerFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FileManagerFrame.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/FilePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FilePanel.java" afterDir="false" />
     </list>
@@ -173,7 +174,14 @@
       <option name="project" value="LOCAL" />
       <updated>1619837214042</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Added details to the files. FileManagerFrame name updates.">
+      <created>1619911461117</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1619911461117</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -201,6 +209,7 @@
     <MESSAGE value="Added a JList to the FilePanel. Filled the entire DirPanel with the JScrollPane." />
     <MESSAGE value="Added action listeners to JComboBox, JTree, and Window menu. Status bar and tree now update when a new drive is selected." />
     <MESSAGE value="Added icons to FilePanel. FilePanel updates with JTree selection. Popup menu opens on right click." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added icons to FilePanel. FilePanel updates with JTree selection. Popup menu opens on right click." />
+    <MESSAGE value="Added details to the files. FileManagerFrame name updates." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added details to the files. FileManagerFrame name updates." />
   </component>
 </project>

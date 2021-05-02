@@ -112,11 +112,10 @@ class App extends JFrame{
      */
     JComboBox drives;
     private void buildToolbar(){
-        DetailsActionListener detailsActionListener = new DetailsActionListener();
         details = new JButton("Details");
         simple = new JButton("Simple");
-        details.addActionListener(detailsActionListener);
-        simple.addActionListener(detailsActionListener);
+        details.addActionListener(new DetailsActionListener());
+        simple.addActionListener(new DetailsActionListener());
         drives = new JComboBox();
         drives.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -261,9 +260,9 @@ class App extends JFrame{
         }
     }
 
-    private class DetailsActionListener implements ActionListener {
+    private static class DetailsActionListener implements ActionListener {
         /**
-         * Shows or hides details in the filePanel (the date the file was created and t
+         * Shows or hides details in the filePanel (the date the file was last modified and the size fo the file.)
          * @param e is the action event
          */
         @Override
@@ -272,13 +271,13 @@ class App extends JFrame{
             if(active==null){
                 return;
             }
-            if(e.equals("Details")){
-                if(active.filePanel.getShowDetails()==false){
+            if(e.getActionCommand().equals("Details")){
+                if(!active.filePanel.getShowDetails()){
                     active.filePanel.setShowDetails(true);
                 }
             }
-            if(e.equals("Simple")){
-                if(active.filePanel.getShowDetails()==true){
+            if(e.getActionCommand().equals("Simple")){
+                if(active.filePanel.getShowDetails()){
                     active.filePanel.setShowDetails(false);
                 }
             }

@@ -37,7 +37,6 @@ public class FileManagerFrame extends JInternalFrame {
         this.addInternalFrameListener(new MyFocusListener());
         this.show();
         this.pack();
-        this.requestFocusInWindow();
     }
 
     public void setFrameTitle(String ft){

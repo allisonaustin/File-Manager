@@ -23,7 +23,7 @@ public class FilePanel extends JPanel {
     JScrollPane scrollPane = new JScrollPane();
     DefaultListModel listModel = new DefaultListModel();
     final DragSource ds = new DragSource();
-    public boolean showDetails = true;
+    public boolean showDetails;
     ArrayList<File> filesInList;
 
     public FilePanel(){
@@ -48,6 +48,7 @@ public class FilePanel extends JPanel {
         setLayout(new BorderLayout());
 
         myList.setModel(listModel);
+        showDetails = true;
         File top = App.getDrives()[0];
         displayFiles(top);
         scrollPane.setViewportView(myList);
@@ -71,6 +72,7 @@ public class FilePanel extends JPanel {
 
         listModel.clear();
         myList.removeAll();
+        filesInList.clear();
         for (int i = 0; i < files.length; i++) {
             if(files[i].isDirectory()){
                 listModel.addElement(files[i].getName());
@@ -79,8 +81,12 @@ public class FilePanel extends JPanel {
         }
         for(int j=0; j < files.length; j++){
             if(!files[j].isDirectory()){
-                String fileStats = formatFileStats(files[j]);
-                listModel.addElement(fileStats);
+                if(this.showDetails){
+                    String fileStats = formatFileStats(files[j]);
+                    listModel.addElement(fileStats);
+                } else{
+                    listModel.addElement(files[j].getName());
+                }
                 filesInList.add(files[j]);
             }
         }
@@ -195,8 +201,10 @@ public class FilePanel extends JPanel {
      *
      * @param b
      */
-    public static void setShowDetails(boolean b){
-
+    public void setShowDetails(boolean b){
+        showDetails = b;
+        File top = getFilesInList().get(0);
+        this.displayFiles(top.getParentFile());
     }
 
     /**
