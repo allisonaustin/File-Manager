@@ -20,6 +20,7 @@ public class FileManagerFrame extends JInternalFrame {
     public FileManagerFrame(JFrame frame) {
         filePanel = new FilePanel(this);
         dirPanel = new DirPanel(filePanel, this);
+        filePanel.setDirPanel(dirPanel);
 
         splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, dirPanel, filePanel);
         splitPane.setOneTouchExpandable(true);

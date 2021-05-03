@@ -50,7 +50,6 @@ class App extends JFrame{
 
         this.add(panel);
         frame1.setVisible(true);
-        //frame1.requestFocusInWindow();
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setVisible(true);
     }
@@ -210,11 +209,11 @@ class App extends JFrame{
             if(e.getActionCommand().equals("Exit")){
                 System.exit(0);
             } else if(e.getActionCommand().equals("Rename")){
-                RenameFileDialog rename_dlg = new RenameFileDialog(null,true, fp, row);
+                RenameFileDialog rename_dlg = new RenameFileDialog(null,true, fp, row, e.getActionCommand());
                 rename_dlg.setVisible(true);
             } else if(e.getActionCommand().equals("Copy")){
-                //todo
-                CopyFileDialog copy_dlg = new CopyFileDialog(null, true, fp, row);
+                String command = "Copying";
+                RenameFileDialog copy_dlg = new RenameFileDialog(null, true, fp, row, command);
                 copy_dlg.setVisible(true);
             } else if(e.getActionCommand().equals("Delete")){
                 DeleteFileDialog delete_dlg = new DeleteFileDialog(null, true, fp, row);

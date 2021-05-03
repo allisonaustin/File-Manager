@@ -1,6 +1,4 @@
 import javax.swing.*;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 import java.awt.*;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.UnsupportedFlavorException;
@@ -19,32 +17,18 @@ import java.text.Format;
 import java.util.ArrayList;
 
 public class FilePanel extends JPanel {
-    JList myList = new JList();
+    public static JList myList = new JList();
     JScrollPane scrollPane = new JScrollPane();
     DefaultListModel listModel = new DefaultListModel();
     final DragSource ds = new DragSource();
     public boolean showDetails;
     private FileManagerFrame thisFrame;
-    ArrayList<File> filesInList;
+    private DirPanel dirPanel;
+    private static ArrayList<File> filesInList;
 
     public FilePanel(FileManagerFrame frame){
         thisFrame = frame;
-        myList.setCellRenderer(new DefaultListCellRenderer() {
-            @Override
-            public Component getListCellRendererComponent(JList list, Object value, int index, boolean selected, boolean cellHasFocus) {
-                super.getListCellRendererComponent(list, value, index, selected, cellHasFocus);
-                if( value instanceof String ) {
-                    if (filesInList.get(index).isDirectory()) {
-                        setIcon(UIManager.getIcon("FileChooser.newFolderIcon"));
-                    } else if (filesInList.get(index).isFile()) {
-                        setIcon(UIManager.getIcon("FileView.fileIcon"));
-                    }
-                    String name = (String) value;
-                    setText(name);
-                }
-                return this;
-            }
-        });
+        myList.setCellRenderer(new MyListCellRenderer());
         myList.addMouseListener(new ListMouseListener());
         myList.setFont(new Font("Lucida Console", Font.PLAIN, 12));
         filesInList = new ArrayList();
@@ -61,14 +45,34 @@ public class FilePanel extends JPanel {
         add(scrollPane, BorderLayout.CENTER);
     }
 
+    /**
+     *
+     * @return
+     */
     public ArrayList<File> getFilesInList(){
         return filesInList;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getSelectedRow(){
         return myList.getMaxSelectionIndex();
     }
 
+    /**
+     *
+     * @param dp
+     */
+    public void setDirPanel(DirPanel dp){
+        dirPanel = dp;
+    }
+
+    /**
+     *
+     * @param dir
+     */
     public void displayFiles(File dir) {
         File[] files;
         files = dir.listFiles();
@@ -100,7 +104,6 @@ public class FilePanel extends JPanel {
     }
 
     /**
-     *
      * @param f is the file to be executed
      */
     public void runFile(File f) {
@@ -113,10 +116,31 @@ public class FilePanel extends JPanel {
             }
     }
 
-    public void renameFile(int index){
+    /**
+     *
+     * @param newName
+     */
+    public void renameFile(String newName) {
+        int index = myList.getMaxSelectionIndex();
+        File oldFile = filesInList.get(index);
+        File newFile = new File(newName);
+        System.out.println("Renaming file..." + oldFile.renameTo(newFile));
+        String name = newFile.getName();
+        listModel.set(index, name);
+    }
+
+    /**
+     *
+     * @param index
+     */
+    public void copyFile(int index){
 
     }
 
+    /**
+     *
+     * @param index
+     */
     public void deleteFile(int index){
         listModel.remove(index);
         filesInList.remove(index);
@@ -140,16 +164,15 @@ public class FilePanel extends JPanel {
     }
 
     /**
-     *
-     * @return
+     * @return showDetails is the current state of the panel's file details.
      */
     public boolean getShowDetails( ){
         return showDetails;
     }
 
     /**
-     *
-     * @param b
+     * Sets the details state to the parameter. Updates the file panel accordingly.
+     * @param b is the new state of showDetails (t/f)
      */
     public void setShowDetails(boolean b){
         showDetails = b;
@@ -159,7 +182,7 @@ public class FilePanel extends JPanel {
 
 
     /**
-     *
+     * JPopup menu with Rename, Copy, Paste, and Delete commands.
      */
     private class FilePopMenu extends JPopupMenu {
         JMenuItem rename = new JMenuItem("Rename");
@@ -177,6 +200,26 @@ public class FilePanel extends JPanel {
             add(paste);
             this.addSeparator();
             add(delete);
+        }
+    }
+
+    /**
+     * Custom cell renderer that sets the icon and the file name for each element in the list.
+     */
+    public class MyListCellRenderer extends DefaultListCellRenderer {
+        @Override
+        public Component getListCellRendererComponent(JList list, Object value, int index, boolean selected, boolean cellHasFocus) {
+            super.getListCellRendererComponent(list, value, index, selected, cellHasFocus);
+            if( value instanceof String ) {
+                String name = (String) value;
+                if (filesInList.get(index).isDirectory()) {
+                    setIcon(UIManager.getIcon("FileChooser.newFolderIcon"));
+                } else if (filesInList.get(index).isFile()) {
+                    setIcon(UIManager.getIcon("FileView.fileIcon"));
+                }
+                setText(name);
+            }
+            return this;
         }
     }
 
@@ -219,7 +262,9 @@ public class FilePanel extends JPanel {
 
 
     /**
-     *
+     * Custom mouse listener class that listens for a right click and a double click.
+     * If the list is double clicked, the class will get the selected file and execute it if it is a file, or list the files if it is a directory.
+     * If the list is right clicked once, a JPopup Menu will appear.
      */
     private class ListMouseListener implements MouseListener {
 
