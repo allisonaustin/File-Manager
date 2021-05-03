@@ -113,6 +113,10 @@ public class FilePanel extends JPanel {
             }
     }
 
+    public void renameFile(int index){
+
+    }
+
     public void deleteFile(int index){
         listModel.remove(index);
         filesInList.remove(index);
@@ -133,6 +137,24 @@ public class FilePanel extends JPanel {
         SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
         DecimalFormat df = new DecimalFormat("#,###");
         return String.format("%-35s %20s %20s", fileName, sdf.format(f.lastModified()), df.format(f.length()));
+    }
+
+    /**
+     *
+     * @return
+     */
+    public boolean getShowDetails( ){
+        return showDetails;
+    }
+
+    /**
+     *
+     * @param b
+     */
+    public void setShowDetails(boolean b){
+        showDetails = b;
+        File top = getFilesInList().get(0);
+        this.displayFiles(top.getParentFile());
     }
 
 
@@ -195,23 +217,6 @@ public class FilePanel extends JPanel {
         }
     }
 
-    /**
-     *
-     * @return
-     */
-    public boolean getShowDetails( ){
-        return showDetails;
-    }
-
-    /**
-     *
-     * @param b
-     */
-    public void setShowDetails(boolean b){
-        showDetails = b;
-        File top = getFilesInList().get(0);
-        this.displayFiles(top.getParentFile());
-    }
 
     /**
      *
@@ -233,7 +238,7 @@ public class FilePanel extends JPanel {
 
         @Override
         public void mousePressed(MouseEvent e) {
-            if( SwingUtilities.isRightMouseButton(e)) {
+            if( SwingUtilities.isRightMouseButton(e) ) {
                 JList list = (JList) e.getSource();
                 int row = list.locationToIndex(e.getPoint());
                 myList.setSelectedIndex(row);

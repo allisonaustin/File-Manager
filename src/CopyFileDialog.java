@@ -1,9 +1,8 @@
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
 
-public class RenameFileDialog extends JDialog {
+public class CopyFileDialog extends JDialog {
     private JPanel contentPane;
     private JLabel fromLabel;
     private JLabel toLabel;
@@ -16,9 +15,9 @@ public class RenameFileDialog extends JDialog {
     private static int row;
     private static File file;
 
-    public RenameFileDialog(java.awt.Frame parent, boolean model, FilePanel fp, int row) {
+    public CopyFileDialog(java.awt.Frame parent, boolean model, FilePanel fp, int row) {
         super(parent, model);
-        super.setTitle("Rename");
+        super.setTitle("Copying");
         filePanel = fp;
         this.row = row;
         file = filePanel.getFilesInList().get(row);
@@ -40,7 +39,7 @@ public class RenameFileDialog extends JDialog {
             public void actionPerformed(ActionEvent e){
                 String toField = getToField();
                 setFromField(toField);
-                filePanel.renameFile(row);
+                //copy file somehow
                 setVisible(false);
             }
         });
@@ -57,7 +56,7 @@ public class RenameFileDialog extends JDialog {
     public static void main(String[] args) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                RenameFileDialog dialog = new RenameFileDialog(new JFrame(), true, filePanel, row);
+                CopyFileDialog dialog = new CopyFileDialog(new JFrame(), true, filePanel, row);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing (java.awt.event.WindowEvent e) {

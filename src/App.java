@@ -205,23 +205,21 @@ class App extends JFrame{
         @Override
         public void actionPerformed(ActionEvent e){
             FileManagerFrame active = (FileManagerFrame) desktop.getSelectedFrame();
+            int row = active.filePanel.getSelectedRow();
+            FilePanel fp = active.filePanel;
             if(e.getActionCommand().equals("Exit")){
                 System.exit(0);
             } else if(e.getActionCommand().equals("Rename")){
-                RenameFileDialog rename_dlg = new RenameFileDialog(null,true);
+                RenameFileDialog rename_dlg = new RenameFileDialog(null,true, fp, row);
                 rename_dlg.setVisible(true);
             } else if(e.getActionCommand().equals("Copy")){
                 //todo
-                RenameFileDialog copy_dlg = new RenameFileDialog(null, true);
+                CopyFileDialog copy_dlg = new CopyFileDialog(null, true, fp, row);
                 copy_dlg.setVisible(true);
             } else if(e.getActionCommand().equals("Delete")){
-                int row = active.filePanel.getSelectedRow();
-                FilePanel fp = active.filePanel;
                 DeleteFileDialog delete_dlg = new DeleteFileDialog(null, true, fp, row);
                 delete_dlg.setVisible(true);
             } else if(e.getActionCommand().equals("Run")){
-                int row = active.filePanel.getSelectedRow();
-                FilePanel fp = active.filePanel;
                 File toRun = fp.getFilesInList().get(row);
                 fp.runFile(toRun);
               //from FilePanel
