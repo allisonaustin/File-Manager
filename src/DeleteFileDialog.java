@@ -7,9 +7,15 @@ public class DeleteFileDialog extends JDialog {
     private JButton buttonNo;
     private JLabel delete;
     private JLabel icon;
+    private static FilePanel filePanel;
+    private static int row;
 
-    public DeleteFileDialog(java.awt.Frame parent, boolean model) {
+    public DeleteFileDialog(java.awt.Frame parent, boolean model, FilePanel fp, int row) {
         super(parent, model);
+        super.setTitle("Deleting!!!");
+        filePanel = fp;
+        this.row = row;
+        delete.setText("Delete " + filePanel.getFilesInList().get(row).getName());
         icon.setIcon(UIManager.getIcon("OptionPane.questionIcon"));
         setContentPane(contentPane);
         this.setLocationRelativeTo(null);
@@ -46,7 +52,7 @@ public class DeleteFileDialog extends JDialog {
     }
 
     private void onYES() {
-        // add your code here
+        filePanel.deleteFile(row);
         dispose();
     }
 
@@ -58,7 +64,7 @@ public class DeleteFileDialog extends JDialog {
     public static void main(String[] args) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                DeleteFileDialog dialog = new DeleteFileDialog(new JFrame(), true);
+                DeleteFileDialog dialog = new DeleteFileDialog(new JFrame(), true, filePanel, row);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {

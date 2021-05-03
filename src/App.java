@@ -1,6 +1,7 @@
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.*;
@@ -29,7 +30,7 @@ class App extends JFrame{
     // Our "main" method
     public void go(){
         this.setTitle("CECS 277 File Manager");
-        this.setSize(900, 700);
+        this.setSize(950, 700);
         this.setLocationRelativeTo(null);
         panel.setLayout(new BorderLayout());
         topPanel.setLayout(new BorderLayout());
@@ -79,6 +80,9 @@ class App extends JFrame{
 
         // Creating actions for our menu items
         rename.addActionListener(new FileActionListener());
+        copy.addActionListener(new FileActionListener());
+        delete.addActionListener(new FileActionListener());
+        run.addActionListener(new FileActionListener());
         exit.addActionListener(new FileActionListener());
         expand_branch.addActionListener(new TreeActionListener());
         collapse_branch.addActionListener(new TreeActionListener());
@@ -200,6 +204,7 @@ class App extends JFrame{
          */
         @Override
         public void actionPerformed(ActionEvent e){
+            FileManagerFrame active = (FileManagerFrame) desktop.getSelectedFrame();
             if(e.getActionCommand().equals("Exit")){
                 System.exit(0);
             } else if(e.getActionCommand().equals("Rename")){
@@ -210,12 +215,15 @@ class App extends JFrame{
                 RenameFileDialog copy_dlg = new RenameFileDialog(null, true);
                 copy_dlg.setVisible(true);
             } else if(e.getActionCommand().equals("Delete")){
-                //todo
-                DeleteFileDialog delete_dlg = new DeleteFileDialog(null, true);
+                int row = active.filePanel.getSelectedRow();
+                FilePanel fp = active.filePanel;
+                DeleteFileDialog delete_dlg = new DeleteFileDialog(null, true, fp, row);
                 delete_dlg.setVisible(true);
             } else if(e.getActionCommand().equals("Run")){
-                //todo
-                System.exit(0);
+                int row = active.filePanel.getSelectedRow();
+                FilePanel fp = active.filePanel;
+                File toRun = fp.getFilesInList().get(row);
+                fp.runFile(toRun);
               //from FilePanel
             } else if(e.getActionCommand().equals("Paste")){
                 //todo

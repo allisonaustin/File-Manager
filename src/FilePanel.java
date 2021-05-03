@@ -54,7 +54,7 @@ public class FilePanel extends JPanel {
         setLayout(new BorderLayout());
 
         myList.setModel(listModel);
-        showDetails = true;
+        showDetails = false;
         File top = App.getDrives()[0];
         displayFiles(top);
         scrollPane.setViewportView(myList);
@@ -66,7 +66,7 @@ public class FilePanel extends JPanel {
     }
 
     public int getSelectedRow(){
-        return myList.getSelectedIndex();
+        return myList.getMaxSelectionIndex();
     }
 
     public void displayFiles(File dir) {
@@ -114,7 +114,7 @@ public class FilePanel extends JPanel {
     }
 
     public void deleteFile(int index){
-        myList.remove(index);
+        listModel.remove(index);
         filesInList.remove(index);
     }
 
@@ -155,13 +155,6 @@ public class FilePanel extends JPanel {
             add(paste);
             this.addSeparator();
             add(delete);
-            addMouseListener(new MouseAdapter() {
-                public void mousePressed(MouseEvent me) {
-                    if (me.isPopupTrigger()){
-                        show(me.getComponent(), me.getX(), me.getY());
-                    }
-                }
-            });
         }
     }
 
@@ -227,24 +220,23 @@ public class FilePanel extends JPanel {
 
         @Override
         public void mouseClicked(MouseEvent e) {
-            if(e.getClickCount() == 1){
-                File f = filesInList.get(getSelectedRow());
-                File[] files = f.listFiles();
+            File f = filesInList.get(getSelectedRow());
+            if(e.getClickCount() == 2) {
                 if(f.isDirectory()){
                     displayFiles(f);
                     thisFrame.setFrameTitle(f.getAbsolutePath());
-
+                } else{
+                    runFile(f);
                 }
-            }
-            if(e.getClickCount() == 2) {
-                File f = filesInList.get(getSelectedRow());
-                runFile(f);
             }
         }
 
         @Override
         public void mousePressed(MouseEvent e) {
-            if(e.isPopupTrigger()) {
+            if( SwingUtilities.isRightMouseButton(e)) {
+                JList list = (JList) e.getSource();
+                int row = list.locationToIndex(e.getPoint());
+                myList.setSelectedIndex(row);
                 FilePopMenu menu = new FilePopMenu();
                 menu.show(e.getComponent(), e.getX(), e.getY());
             }
