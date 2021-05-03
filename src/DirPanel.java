@@ -186,7 +186,12 @@ public class DirPanel extends JPanel {
                 if(node.getUserObject() instanceof FileNode) {
                     FileNode fn = (FileNode) node.getUserObject();
                     if (fn.isDirectory()) {
-                        setIcon(UIManager.getIcon("FileChooser.newFolderIcon"));
+                        File[] files = fn.getFile().listFiles();
+                        if(files == null){ //folder is empty
+                            setIcon(UIManager.getIcon("FileChooser.newFolderIcon"));
+                        } else{ //folder contains files
+                            setIcon(UIManager.getIcon("FileChooser.upFolderIcon"));
+                        }
                     }
                 }
             }

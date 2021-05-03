@@ -4,19 +4,29 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="842e4cad-4169-47f4-8647-99813a6dae12" name="Default Changelist" comment="Successfully updated FilePanel to respond to Details/Simple buttons.">
-      <change afterPath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/App$1.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/App$CascadeActionListener.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/App$DetailsActionListener.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/DirPanel$MyTreeCellRenderer.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/DirPanel$MyTreeSelectionListener.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/FileManagerFrame$MyFocusListener.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/FilePanel$1.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/FilePanel$FilePopMenu$1.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/FilePanel$FilePopMenu.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/FilePanel$ListMouseListener.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/FilePanel$MyDropTarget.class" afterDir="false" />
+    <list default="true" id="842e4cad-4169-47f4-8647-99813a6dae12" name="Default Changelist" comment="Icons in FilePanel are updated. Folders in FilePanel are now explorable. Files in file panel are executable.">
+      <change afterPath="$PROJECT_DIR$/src/DeleteFileDialog.form" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/DeleteFileDialog.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/App$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/App$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/App$CascadeActionListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/App$CascadeActionListener.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/App$DetailsActionListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/App$DetailsActionListener.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/App$FileActionListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/App$FileActionListener.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/App$HelpActionListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/App$HelpActionListener.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/App$TreeActionListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/App$TreeActionListener.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/App$WindowActionListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/App$WindowActionListener.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/App.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/App.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/DirPanel$MyTreeCellRenderer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/DirPanel$MyTreeCellRenderer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/FileManagerFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/FileManagerFrame.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/FilePanel$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/FilePanel$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/FilePanel$FilePopMenu$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/FilePanel$FilePopMenu$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/FilePanel$FilePopMenu.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/FilePanel$FilePopMenu.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/FilePanel$ListMouseListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/FilePanel$ListMouseListener.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/FilePanel$MyDropTarget.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/FilePanel$MyDropTarget.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/FilePanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/FilePanel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DirPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DirPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/FileManagerFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FileManagerFrame.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/FilePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FilePanel.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -190,7 +200,14 @@
       <option name="project" value="LOCAL" />
       <updated>1619914574310</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="Icons in FilePanel are updated. Folders in FilePanel are now explorable. Files in file panel are executable.">
+      <created>1619995705081</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1619995705081</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -220,6 +237,7 @@
     <MESSAGE value="Added icons to FilePanel. FilePanel updates with JTree selection. Popup menu opens on right click." />
     <MESSAGE value="Added details to the files. FileManagerFrame name updates." />
     <MESSAGE value="Successfully updated FilePanel to respond to Details/Simple buttons." />
-    <option name="LAST_COMMIT_MESSAGE" value="Successfully updated FilePanel to respond to Details/Simple buttons." />
+    <MESSAGE value="Icons in FilePanel are updated. Folders in FilePanel are now explorable. Files in file panel are executable." />
+    <option name="LAST_COMMIT_MESSAGE" value="Icons in FilePanel are updated. Folders in FilePanel are now explorable. Files in file panel are executable." />
   </component>
 </project>

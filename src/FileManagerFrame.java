@@ -18,7 +18,7 @@ public class FileManagerFrame extends JInternalFrame {
     static int lastSelectedRow;
 
     public FileManagerFrame(JFrame frame) {
-        filePanel = new FilePanel();
+        filePanel = new FilePanel(this);
         dirPanel = new DirPanel(filePanel, this);
 
         splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, dirPanel, filePanel);

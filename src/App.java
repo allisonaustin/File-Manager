@@ -49,6 +49,7 @@ class App extends JFrame{
 
         this.add(panel);
         frame1.setVisible(true);
+        //frame1.requestFocusInWindow();
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setVisible(true);
     }
@@ -192,7 +193,7 @@ class App extends JFrame{
     }
 
     // Constructing new classes that implement ActionListener to give actions to our menu items.
-    private static class FileActionListener implements ActionListener{
+    public static class FileActionListener implements ActionListener{
         /**
          * Creates actions for our menu items in our File menu.
          * @param e is the action event
@@ -204,6 +205,21 @@ class App extends JFrame{
             } else if(e.getActionCommand().equals("Rename")){
                 RenameFileDialog rename_dlg = new RenameFileDialog(null,true);
                 rename_dlg.setVisible(true);
+            } else if(e.getActionCommand().equals("Copy")){
+                //todo
+                RenameFileDialog copy_dlg = new RenameFileDialog(null, true);
+                copy_dlg.setVisible(true);
+            } else if(e.getActionCommand().equals("Delete")){
+                //todo
+                DeleteFileDialog delete_dlg = new DeleteFileDialog(null, true);
+                delete_dlg.setVisible(true);
+            } else if(e.getActionCommand().equals("Run")){
+                //todo
+                System.exit(0);
+              //from FilePanel
+            } else if(e.getActionCommand().equals("Paste")){
+                //todo
+                System.exit(0);
             }
         }
     }

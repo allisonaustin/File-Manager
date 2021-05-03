@@ -24,18 +24,19 @@ public class FilePanel extends JPanel {
     DefaultListModel listModel = new DefaultListModel();
     final DragSource ds = new DragSource();
     public boolean showDetails;
+    private FileManagerFrame thisFrame;
     ArrayList<File> filesInList;
 
-    public FilePanel(){
+    public FilePanel(FileManagerFrame frame){
+        thisFrame = frame;
         myList.setCellRenderer(new DefaultListCellRenderer() {
             @Override
             public Component getListCellRendererComponent(JList list, Object value, int index, boolean selected, boolean cellHasFocus) {
                 super.getListCellRendererComponent(list, value, index, selected, cellHasFocus);
-                if( value instanceof String ){
-                    if( filesInList.get(index).isDirectory() ){
+                if( value instanceof String ) {
+                    if (filesInList.get(index).isDirectory()) {
                         setIcon(UIManager.getIcon("FileChooser.newFolderIcon"));
-                    }
-                    else if( filesInList.get(index).isFile() ){
+                    } else if (filesInList.get(index).isFile()) {
                         setIcon(UIManager.getIcon("FileView.fileIcon"));
                     }
                     String name = (String) value;
@@ -112,6 +113,11 @@ public class FilePanel extends JPanel {
             }
     }
 
+    public void deleteFile(int index){
+        myList.remove(index);
+        filesInList.remove(index);
+    }
+
     /**
      *
      * @param f
@@ -140,15 +146,20 @@ public class FilePanel extends JPanel {
         JMenuItem delete = new JMenuItem("Delete");
 
         public FilePopMenu() {
+            rename.addActionListener(new App.FileActionListener());
+            copy.addActionListener(new App.FileActionListener());
+            paste.addActionListener(new App.FileActionListener());
+            delete.addActionListener(new App.FileActionListener());
             add(rename);
             add(copy);
             add(paste);
             this.addSeparator();
             add(delete);
             addMouseListener(new MouseAdapter() {
-                public void mouseReleased(MouseEvent me) {
-                    if (me.isPopupTrigger())
+                public void mousePressed(MouseEvent me) {
+                    if (me.isPopupTrigger()){
                         show(me.getComponent(), me.getX(), me.getY());
+                    }
                 }
             });
         }
@@ -218,8 +229,11 @@ public class FilePanel extends JPanel {
         public void mouseClicked(MouseEvent e) {
             if(e.getClickCount() == 1){
                 File f = filesInList.get(getSelectedRow());
+                File[] files = f.listFiles();
                 if(f.isDirectory()){
                     displayFiles(f);
+                    thisFrame.setFrameTitle(f.getAbsolutePath());
+
                 }
             }
             if(e.getClickCount() == 2) {
@@ -230,15 +244,14 @@ public class FilePanel extends JPanel {
 
         @Override
         public void mousePressed(MouseEvent e) {
-
-        }
-
-        @Override
-        public void mouseReleased(MouseEvent e){
             if(e.isPopupTrigger()) {
                 FilePopMenu menu = new FilePopMenu();
                 menu.show(e.getComponent(), e.getX(), e.getY());
             }
+        }
+
+        @Override
+        public void mouseReleased(MouseEvent e){
         }
 
         @Override
