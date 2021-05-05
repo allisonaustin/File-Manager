@@ -278,7 +278,8 @@ class App extends JFrame{
                 AboutDialog dlg = new AboutDialog(null, true);
                 dlg.setVisible(true);
             } else if(e.getActionCommand().equals("Help ")){
-                System.exit(0);
+                HelpDialog dlg = new HelpDialog(null, true);
+                dlg.setVisible(true);
             }
         }
     }

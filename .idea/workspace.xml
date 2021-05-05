@@ -5,26 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="842e4cad-4169-47f4-8647-99813a6dae12" name="Default Changelist" comment="Copying files to another directory.">
+      <change afterPath="$PROJECT_DIR$/src/HelpDialog.form" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/HelpDialog.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/App$CascadeActionListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/App$CascadeActionListener.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/App$DetailsActionListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/App$DetailsActionListener.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/App$FileActionListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/App$FileActionListener.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/App$HelpActionListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/App$HelpActionListener.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/App$TreeActionListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/App$TreeActionListener.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/App$WindowActionListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/App$WindowActionListener.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/App.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/App.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/FileManagerFrame$MyFocusListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/FileManagerFrame$MyFocusListener.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/FileManagerFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/FileManagerFrame.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/FilePanel$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/FilePanel$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/FilePanel$FilePopMenu.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/FilePanel$FilePopMenu.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/FilePanel$ListMouseListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/FilePanel$ListMouseListener.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/FilePanel$MyDropTarget.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/FilePanel$MyDropTarget.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/FilePanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/FilePanel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/RenameFileDialog$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/RenameFileDialog$2.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/FileManagerFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FileManagerFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/FilePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FilePanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/RenameFileDialog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/RenameFileDialog.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -229,7 +214,14 @@
       <option name="project" value="LOCAL" />
       <updated>1620029060184</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="Copying files to another directory.">
+      <created>1620182314088</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1620182314088</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -273,6 +265,7 @@
     <MESSAGE value="File Manager Frame name updates when directories are selected in FilePanel. Added DeleteFileDialog. Switched JPopup to show on mousePressed for Han." />
     <MESSAGE value="Successfully implemented Delete and Run action listeners for both JPopup menu and top menu. Resized entire frame and File Manager Frame. File details no longer show on startup." />
     <MESSAGE value="Created working dialogs for copying and renaming a file." />
-    <option name="LAST_COMMIT_MESSAGE" value="Created working dialogs for copying and renaming a file." />
+    <MESSAGE value="Copying files to another directory." />
+    <option name="LAST_COMMIT_MESSAGE" value="Copying files to another directory." />
   </component>
 </project>

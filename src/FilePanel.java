@@ -49,7 +49,7 @@ public class FilePanel extends JPanel {
             }
         });
         myList.addMouseListener(new ListMouseListener());
-        myList.setFont(new Font("Lucida Console", Font.PLAIN, 12));
+        myList.setFont(new Font("Courier New", Font.PLAIN, 12));
         filesInList = new ArrayList();
         this.setDropTarget(new MyDropTarget());
         myList.setDragEnabled(true);
