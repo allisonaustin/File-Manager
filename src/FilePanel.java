@@ -11,13 +11,11 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.text.Format;
 import java.util.ArrayList;
+import java.util.List;
 
 public class FilePanel extends JPanel {
     JList myList = new JList();
@@ -38,7 +36,7 @@ public class FilePanel extends JPanel {
                     if(filesInList.size() > 0){
                         if (filesInList.get(index).isDirectory()) {
                             setIcon(UIManager.getIcon("FileChooser.newFolderIcon"));
-                        } else if (filesInList.get(index).isFile()) {
+                        } else {
                             setIcon(UIManager.getIcon("FileView.fileIcon"));
                         }
                         String name = (String) value;
@@ -75,9 +73,7 @@ public class FilePanel extends JPanel {
      *
      * @return int last selected index in the list.
      */
-    public int getSelectedRow(){
-        return myList.getMaxSelectionIndex();
-    }
+    public int getSelectedRow(){ return myList.getMaxSelectionIndex(); }
 
 
     /**
@@ -85,6 +81,7 @@ public class FilePanel extends JPanel {
      * @param dir
      */
     public void displayFiles(File dir) {
+        App.selectedDirectory = dir;
         File[] files;
         files = dir.listFiles();
         if(files == null){
@@ -151,6 +148,17 @@ public class FilePanel extends JPanel {
         listModel.addElement(copy.getName());
         filesInList.add(copy);
         myList.setModel(listModel);
+    }
+
+
+    /**
+     *
+     */
+    public void pasteFile(String fileName){
+        File copy = new File(App.selectedDirectory.getAbsolutePath() + '\\' +  fileName);
+        System.out.println(App.selectedDirectory.getAbsolutePath() + '\\' + fileName);
+        listModel.addElement(copy.getName());
+        filesInList.add(copy);
     }
 
 
@@ -228,33 +236,35 @@ public class FilePanel extends JPanel {
      */
     class MyDropTarget extends DropTarget {
 
-        public void drop(DropTargetDropEvent e){
-            e.acceptDrop(DnDConstants.ACTION_COPY);
-            ArrayList result = new ArrayList();
-            // looks at type of file being dragged in
-            // from outside: String flavor
-            // from inside: File flavor
-            if (e.getTransferable().isDataFlavorSupported(DataFlavor.stringFlavor)) {
-                String temp = null;
-                try {
-                    temp = (String) e.getTransferable().getTransferData(DataFlavor.stringFlavor);
-                } catch (UnsupportedFlavorException | IOException unsupportedFlavorException) {
-                    unsupportedFlavorException.printStackTrace();
+        public void drop(DropTargetDropEvent e) {
+            try {
+                // looks at type of file being dragged in
+                // from outside: String flavor
+                // from inside: File flavor
+                e.acceptDrop(DnDConstants.ACTION_COPY);
+                List draggedFiles = new ArrayList();
+
+                if (e.getTransferable().isDataFlavorSupported(DataFlavor.stringFlavor)) {
+                    String temp = (String) e.getTransferable().getTransferData(DataFlavor.stringFlavor);
+                    String[] next = temp.split("\\n");
+                    System.out.println("Dragging and dropping...");
+                    for (int i = 0; i < next.length; i++) {
+                        System.out.println(next[i]);
+                        pasteFile(next[i]);
+                    }
+
+                } else {
+                    draggedFiles = (List)e.getTransferable().getTransferData(DataFlavor.javaFileListFlavor);
+                    System.out.println("Dragging and dropping...");
+                    for (Object o : draggedFiles) {
+                        System.out.println(o.toString());
+                        File f = (File) o;
+                        filesInList.add(f);
+                        listModel.addElement(f.getName());
+                    }
                 }
-                String[] next = temp.split("\\n");
-                for (int i = 0; i < next.length; i++) {
-                    listModel.addElement(next[i]);
-                }
-            } else{
-                try {
-                    result = (ArrayList) e.getTransferable().getTransferData(DataFlavor.javaFileListFlavor);
-                } catch (UnsupportedFlavorException | IOException unsupportedFlavorException) {
-                    unsupportedFlavorException.printStackTrace();
-                }
-                for(Object o : result){
-                    System.out.println(o.toString());
-                    listModel.addElement(o.toString());
-                }
+            } catch (UnsupportedFlavorException | IOException unsupportedFlavorException) {
+                unsupportedFlavorException.printStackTrace();
             }
         }
     }

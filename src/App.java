@@ -15,6 +15,7 @@ class App extends JFrame{
     JButton details, simple;
     static JDesktopPane desktop;
     FileManagerFrame frame1, intframe;
+    public static File selectedDirectory;
 
     public App() {
         topPanel = new JPanel();
