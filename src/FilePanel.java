@@ -11,24 +11,43 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.text.Format;
 import java.util.ArrayList;
 
 public class FilePanel extends JPanel {
-    public static JList myList = new JList();
+    JList myList = new JList();
     JScrollPane scrollPane = new JScrollPane();
     DefaultListModel listModel = new DefaultListModel();
     final DragSource ds = new DragSource();
     public boolean showDetails;
     private FileManagerFrame thisFrame;
-    private DirPanel dirPanel;
-    private static ArrayList<File> filesInList;
+    ArrayList<File> filesInList = new ArrayList<>();
 
     public FilePanel(FileManagerFrame frame){
         thisFrame = frame;
-        myList.setCellRenderer(new MyListCellRenderer());
+        myList.setCellRenderer(new DefaultListCellRenderer() {
+            @Override
+            public Component getListCellRendererComponent(JList list, Object value, int index, boolean selected, boolean cellHasFocus) {
+                super.getListCellRendererComponent(list, value, index, selected, cellHasFocus);
+                if (value instanceof String) {
+                    if(filesInList.size() > 0){
+                        if (filesInList.get(index).isDirectory()) {
+                            setIcon(UIManager.getIcon("FileChooser.newFolderIcon"));
+                        } else if (filesInList.get(index).isFile()) {
+                            setIcon(UIManager.getIcon("FileView.fileIcon"));
+                        }
+                        String name = (String) value;
+                        setText(name);
+                    }
+                }
+                return this;
+            }
+        });
         myList.addMouseListener(new ListMouseListener());
         myList.setFont(new Font("Lucida Console", Font.PLAIN, 12));
         filesInList = new ArrayList();
@@ -46,8 +65,7 @@ public class FilePanel extends JPanel {
     }
 
     /**
-     *
-     * @return
+     * @return ArrayList<File> of all the files in the current list.
      */
     public ArrayList<File> getFilesInList(){
         return filesInList;
@@ -55,22 +73,15 @@ public class FilePanel extends JPanel {
 
     /**
      *
-     * @return
+     * @return int last selected index in the list.
      */
     public int getSelectedRow(){
         return myList.getMaxSelectionIndex();
     }
 
-    /**
-     *
-     * @param dp
-     */
-    public void setDirPanel(DirPanel dp){
-        dirPanel = dp;
-    }
 
     /**
-     *
+     * Reads the directory, lists all files and directories under that directory by adding them to the list model.
      * @param dir
      */
     public void displayFiles(File dir) {
@@ -117,7 +128,7 @@ public class FilePanel extends JPanel {
     }
 
     /**
-     *
+     * Renames a file and sets the new file to the selected index in the list model.
      * @param newName
      */
     public void renameFile(String newName) {
@@ -130,15 +141,21 @@ public class FilePanel extends JPanel {
     }
 
     /**
-     *
+     * Copies a file and moves that copy to a specified location.
      * @param index
      */
-    public void copyFile(int index){
-
+    public void copyFile(int index, String loc){
+        File path = new File(loc);
+        File copy = new File(filesInList.get(index).getAbsolutePath());
+        displayFiles(path);
+        listModel.addElement(copy.getName());
+        filesInList.add(copy);
+        myList.setModel(listModel);
     }
 
+
     /**
-     *
+     * Removes a file from the list model and the ArrayList of files.
      * @param index
      */
     public void deleteFile(int index){
@@ -147,7 +164,8 @@ public class FilePanel extends JPanel {
     }
 
     /**
-     *
+     * Slices the name of the file if it is longer than 30 characters.
+     * Aligns the file name with the date the file was last modified and the size of the file in bytes.
      * @param f
      * @return
      */
@@ -203,25 +221,6 @@ public class FilePanel extends JPanel {
         }
     }
 
-    /**
-     * Custom cell renderer that sets the icon and the file name for each element in the list.
-     */
-    public class MyListCellRenderer extends DefaultListCellRenderer {
-        @Override
-        public Component getListCellRendererComponent(JList list, Object value, int index, boolean selected, boolean cellHasFocus) {
-            super.getListCellRendererComponent(list, value, index, selected, cellHasFocus);
-            if( value instanceof String ) {
-                String name = (String) value;
-                if (filesInList.get(index).isDirectory()) {
-                    setIcon(UIManager.getIcon("FileChooser.newFolderIcon"));
-                } else if (filesInList.get(index).isFile()) {
-                    setIcon(UIManager.getIcon("FileView.fileIcon"));
-                }
-                setText(name);
-            }
-            return this;
-        }
-    }
 
 
     /**
@@ -270,13 +269,15 @@ public class FilePanel extends JPanel {
 
         @Override
         public void mouseClicked(MouseEvent e) {
-            File f = filesInList.get(getSelectedRow());
-            if(e.getClickCount() == 2) {
-                if(f.isDirectory()){
-                    displayFiles(f);
-                    thisFrame.setFrameTitle(f.getAbsolutePath());
-                } else{
-                    runFile(f);
+            if(filesInList.size() > 0){
+                File f = filesInList.get(getSelectedRow());
+                if(e.getClickCount() == 2) {
+                    if(f.isDirectory()){
+                        displayFiles(f);
+                        thisFrame.setFrameTitle(f.getAbsolutePath());
+                    } else{
+                        runFile(f);
+                    }
                 }
             }
         }

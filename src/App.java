@@ -204,6 +204,9 @@ class App extends JFrame{
         @Override
         public void actionPerformed(ActionEvent e){
             FileManagerFrame active = (FileManagerFrame) desktop.getSelectedFrame();
+            if(active==null){
+                return;
+            }
             int row = active.filePanel.getSelectedRow();
             FilePanel fp = active.filePanel;
             if(e.getActionCommand().equals("Exit")){
@@ -223,7 +226,6 @@ class App extends JFrame{
                 fp.runFile(toRun);
               //from FilePanel
             } else if(e.getActionCommand().equals("Paste")){
-                //todo
                 System.exit(0);
             }
         }

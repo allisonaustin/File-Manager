@@ -46,7 +46,7 @@ public class RenameFileDialog extends JDialog {
                     filePanel.renameFile(toField);
                 }
                 else if(command.equals("Copying")){
-                    filePanel.copyFile(row);
+                    filePanel.copyFile(row, toField);
                 }
                 setVisible(false);
             }

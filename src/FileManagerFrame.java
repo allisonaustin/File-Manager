@@ -13,21 +13,20 @@ public class FileManagerFrame extends JInternalFrame {
     JSplitPane splitPane;
     DirPanel dirPanel;
     FilePanel filePanel;
-    static String frameTitle = "C:/";
+    static String frameTitle;
     static String currentSelected;
     static int lastSelectedRow;
 
     public FileManagerFrame(JFrame frame) {
         filePanel = new FilePanel(this);
         dirPanel = new DirPanel(filePanel, this);
-        filePanel.setDirPanel(dirPanel);
 
         splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, dirPanel, filePanel);
         splitPane.setOneTouchExpandable(true);
         splitPane.setDividerLocation(250);
         splitPane.setSize(500,500);
         this.getContentPane().add(splitPane);
-
+        frameTitle = "C:/";
         setTitle(frameTitle);
         this.setSize(500,500);
         this.setResizable(true);
@@ -38,7 +37,6 @@ public class FileManagerFrame extends JInternalFrame {
         this.addInternalFrameListener(new MyFocusListener());
         this.show();
         this.pack();
-        this.requestFocusInWindow();
     }
 
     public void setFrameTitle(String ft){

@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="842e4cad-4169-47f4-8647-99813a6dae12" name="Default Changelist" comment="Created working dialogs for copying and renaming a file.">
+    <list default="true" id="842e4cad-4169-47f4-8647-99813a6dae12" name="Default Changelist" comment="Copying files to another directory.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/App$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/App$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/App$CascadeActionListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/App$CascadeActionListener.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/App$DetailsActionListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/App$DetailsActionListener.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/App$FileActionListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/App$FileActionListener.class" afterDir="false" />
@@ -14,14 +13,15 @@
       <change beforePath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/App$TreeActionListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/App$TreeActionListener.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/App$WindowActionListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/App$WindowActionListener.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/App.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/App.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/RenameFileDialog$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/RenameFileDialog$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/FileManagerFrame$MyFocusListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/FileManagerFrame$MyFocusListener.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/FileManagerFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/FileManagerFrame.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/FilePanel$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/FilePanel$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/FilePanel$FilePopMenu.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/FilePanel$FilePopMenu.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/FilePanel$ListMouseListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/FilePanel$ListMouseListener.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/FilePanel$MyDropTarget.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/FilePanel$MyDropTarget.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/FilePanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/FilePanel.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/RenameFileDialog$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/RenameFileDialog$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/RenameFileDialog$3$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/RenameFileDialog$3$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/RenameFileDialog$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/RenameFileDialog$3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/RenameFileDialog.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/RenameFileDialog.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/CopyFileDialog.form" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/CopyFileDialog.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/FileManagerFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FileManagerFrame.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/FilePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FilePanel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/RenameFileDialog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/RenameFileDialog.java" afterDir="false" />
@@ -231,6 +231,16 @@
     </task>
     <option name="localTasksCounter" value="20" />
     <servers />
+  </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ID_ORDER">
+      <list>
+        <option value="Default.Root" />
+        <option value="Default.Author" />
+        <option value="Default.Date" />
+        <option value="Default.Subject" />
+      </list>
+    </option>
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
