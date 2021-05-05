@@ -4,14 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="842e4cad-4169-47f4-8647-99813a6dae12" name="Default Changelist" comment="Resized ScrollPane for DirPanel to fit on the right side of the SplitPane. Successfully built directory using JTree by reading files on the C drive. Created a TreeSelectionListener for file execution.">
+    <list default="true" id="842e4cad-4169-47f4-8647-99813a6dae12" name="Default Changelist" comment="Added Han's Help Dialog.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/App$FileActionListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/App$FileActionListener.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/App$HelpActionListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/App$HelpActionListener.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/App.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CECS_277_Final_Proj/App.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DirPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DirPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/FileManagerFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FileManagerFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/FilePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FilePanel.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,6 +43,7 @@
     <property name="UI_DESIGNER_EDITOR_MODE.PaletteManager.SHOW" value="false" />
     <property name="UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.SHOW" value="false" />
     <property name="UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.WIDTH" value="283" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -54,6 +51,9 @@
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\austi\Documents\GitHub\CECS_277_Final_Proj\src" />
     </key>
   </component>
   <component name="RunManager">
@@ -142,8 +142,102 @@
       <option name="project" value="LOCAL" />
       <updated>1618986251522</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Reorganized directory. Added components to the status bar. Fixed toolbar to properly display drive name.">
+      <created>1619208559858</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1619208559858</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Added a JList to the FilePanel. Filled the entire DirPanel with the JScrollPane.">
+      <created>1619316534565</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1619316534565</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Added action listeners to JComboBox, JTree, and Window menu. Status bar and tree now update when a new drive is selected.">
+      <created>1619551941148</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1619551941148</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Added icons to FilePanel. FilePanel updates with JTree selection. Popup menu opens on right click.">
+      <created>1619837214042</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1619837214042</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Added details to the files. FileManagerFrame name updates.">
+      <created>1619911461117</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1619911461117</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Successfully updated FilePanel to respond to Details/Simple buttons.">
+      <created>1619914574310</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1619914574310</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Icons in FilePanel are updated. Folders in FilePanel are now explorable. Files in file panel are executable.">
+      <created>1619995705081</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1619995705081</updated>
+    </task>
+    <task id="LOCAL-00017" summary="File Manager Frame name updates when directories are selected in FilePanel. Added DeleteFileDialog. Switched JPopup to show on mousePressed for Han.">
+      <created>1620003869989</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1620003869989</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Successfully implemented Delete and Run action listeners for both JPopup menu and top menu. Resized entire frame and File Manager Frame. File details no longer show on startup.">
+      <created>1620010076030</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1620010076030</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Created working dialogs for copying and renaming a file.">
+      <created>1620029060184</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1620029060184</updated>
+    </task>
+    <task id="LOCAL-00020" summary="Copying files to another directory.">
+      <created>1620182314088</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1620182314088</updated>
+    </task>
+    <task id="LOCAL-00021" summary="Added Han's Help Dialog.">
+      <created>1620185679904</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1620185679904</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
+  </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ID_ORDER">
+      <list>
+        <option value="Default.Root" />
+        <option value="Default.Author" />
+        <option value="Default.Date" />
+        <option value="Default.Subject" />
+      </list>
+    </option>
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -166,6 +260,18 @@
     <MESSAGE value="Added comments + javadocs :)" />
     <MESSAGE value="Added a split pane with a Directory Panel and a File Panel." />
     <MESSAGE value="Resized ScrollPane for DirPanel to fit on the right side of the SplitPane. Successfully built directory using JTree by reading files on the C drive. Created a TreeSelectionListener for file execution." />
-    <option name="LAST_COMMIT_MESSAGE" value="Resized ScrollPane for DirPanel to fit on the right side of the SplitPane. Successfully built directory using JTree by reading files on the C drive. Created a TreeSelectionListener for file execution." />
+    <MESSAGE value="Reorganized directory. Added components to the status bar. Fixed toolbar to properly display drive name." />
+    <MESSAGE value="Added a JList to the FilePanel. Filled the entire DirPanel with the JScrollPane." />
+    <MESSAGE value="Added action listeners to JComboBox, JTree, and Window menu. Status bar and tree now update when a new drive is selected." />
+    <MESSAGE value="Added icons to FilePanel. FilePanel updates with JTree selection. Popup menu opens on right click." />
+    <MESSAGE value="Added details to the files. FileManagerFrame name updates." />
+    <MESSAGE value="Successfully updated FilePanel to respond to Details/Simple buttons." />
+    <MESSAGE value="Icons in FilePanel are updated. Folders in FilePanel are now explorable. Files in file panel are executable." />
+    <MESSAGE value="File Manager Frame name updates when directories are selected in FilePanel. Added DeleteFileDialog. Switched JPopup to show on mousePressed for Han." />
+    <MESSAGE value="Successfully implemented Delete and Run action listeners for both JPopup menu and top menu. Resized entire frame and File Manager Frame. File details no longer show on startup." />
+    <MESSAGE value="Created working dialogs for copying and renaming a file." />
+    <MESSAGE value="Copying files to another directory." />
+    <MESSAGE value="Added Han's Help Dialog." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added Han's Help Dialog." />
   </component>
 </project>

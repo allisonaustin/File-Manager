@@ -1,6 +1,8 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.File;
+import java.io.IOException;
 
 public class RenameFileDialog extends JDialog {
     private JPanel contentPane;
@@ -10,12 +12,23 @@ public class RenameFileDialog extends JDialog {
     private JButton cancelButton;
     private JTextField fromField;
     private JTextField toField;
+    private JLabel currDirectory;
+    private static String command;
+    private static FilePanel filePanel;
+    private static int row;
+    private static File file;
 
-    public RenameFileDialog(java.awt.Frame parent, boolean model) {
+    public RenameFileDialog(java.awt.Frame parent, boolean model, FilePanel fp, int row, String command) {
         super(parent, model);
-        super.setTitle("Rename");
+        super.setTitle(command);
+        filePanel = fp;
+        this.row = row;
+        file = filePanel.getFilesInList().get(row);
+        currDirectory.setText("Current Directory:   "+ file.getAbsolutePath());
+        setFromField(file.getName());
         setContentPane(contentPane);
         pack();
+        toField.requestFocusInWindow();
         this.setLocationRelativeTo(null);
         setModal(true);
 
@@ -29,6 +42,12 @@ public class RenameFileDialog extends JDialog {
             public void actionPerformed(ActionEvent e){
                 String toField = getToField();
                 setFromField(toField);
+                if(command.equals("Rename")){
+                    filePanel.renameFile(toField);
+                }
+                else if(command.equals("Copying")){
+                    filePanel.copyFile(row, toField);
+                }
                 setVisible(false);
             }
         });
@@ -45,7 +64,7 @@ public class RenameFileDialog extends JDialog {
     public static void main(String[] args) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                RenameFileDialog dialog = new RenameFileDialog(new JFrame(), true);
+                RenameFileDialog dialog = new RenameFileDialog(new JFrame(), true, filePanel, row, command);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing (java.awt.event.WindowEvent e) {
