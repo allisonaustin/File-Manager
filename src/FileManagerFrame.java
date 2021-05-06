@@ -39,12 +39,20 @@ public class FileManagerFrame extends JInternalFrame {
         this.pack();
     }
 
+    /**
+     * Sets the title of the frame.
+     * Allows the title to be updated from the dir/filePanel whenever a new directory is selected.
+     * @param ft
+     */
     public void setFrameTitle(String ft){
         frameTitle = ft;
         setTitle(frameTitle);
         this.repaint();
     }
 
+    /**
+     * Communicates with the status bar in App.java whenever the frame experiences a drive change.
+     */
     class MyFocusListener implements InternalFrameListener {
 
         @Override

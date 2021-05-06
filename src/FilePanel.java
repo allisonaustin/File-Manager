@@ -152,7 +152,8 @@ public class FilePanel extends JPanel {
 
 
     /**
-     *
+     * Copies the file by creating a new file of the same name and directory.
+     * Adds the file to the listModel and the parallel Array List.
      */
     public void pasteFile(String fileName){
         File copy = new File(App.selectedDirectory.getAbsolutePath() + '\\' +  fileName);

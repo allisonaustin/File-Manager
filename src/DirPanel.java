@@ -27,39 +27,38 @@ public class DirPanel extends JPanel {
     }
 
     /**
-     *
-     * @param root
+     * Sets the root file of the filePanel.
+     * @param root is the name of the new root file.
      */
     public void setRootFile(String root){
         rootFile = new File(root);
     }
 
     /**
-     *
-     * @return
+     * @return path name of the root file.
      */
     public String getRootFile(){
         return rootFile.getPath();
     }
 
     /**
-     *
-     * @return
+     * @return the directory tree.
      */
     public JTree getDirTree() {
         return dirTree;
     }
 
     /**
-     *
-     * @param fp
+     * Sets the file panel of the dirTree.
+     * Allows the dirPanel and the filePanel to communicate with eachother.
+     * @param fp is the file panel linked to the dirPanel.
      */
     public void setFilePanel(FilePanel fp){
         filePanel = fp;
     }
 
     /**
-     *
+     * Updates the filePanel by displaying the files starting with the selected directory.
      */
     public void changeFilePanel(){
         DefaultMutableTreeNode node = (DefaultMutableTreeNode) dirTree.getLastSelectedPathComponent();
@@ -71,7 +70,7 @@ public class DirPanel extends JPanel {
     }
 
     /**
-     *
+     * Sets the directory tree.
      */
     public void setTree() {
         FileNode root = new FileNode(rootFile.getPath(), rootFile);
@@ -100,7 +99,7 @@ public class DirPanel extends JPanel {
     }
 
     /**
-     *
+     * Explores the nodes underneath the directories 1 level deep.
      * @param top
      */
     private void createNodes(DefaultMutableTreeNode top) {
